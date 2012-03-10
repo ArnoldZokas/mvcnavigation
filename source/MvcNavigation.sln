@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNavigation", "MvcNavigation\MvcNavigation.csproj", "{4F26E18B-86E6-4AA0-A8A9-3ED2D953D884}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSitemap.Specifications", "MvcNavigation.Specifications\MvcSitemap.Specifications.csproj", "{EC1397B3-9301-4D9C-99BF-D37437280E59}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = ScottDunn.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F26E18B-86E6-4AA0-A8A9-3ED2D953D884}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F26E18B-86E6-4AA0-A8A9-3ED2D953D884}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F26E18B-86E6-4AA0-A8A9-3ED2D953D884}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F26E18B-86E6-4AA0-A8A9-3ED2D953D884}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC1397B3-9301-4D9C-99BF-D37437280E59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC1397B3-9301-4D9C-99BF-D37437280E59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC1397B3-9301-4D9C-99BF-D37437280E59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC1397B3-9301-4D9C-99BF-D37437280E59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

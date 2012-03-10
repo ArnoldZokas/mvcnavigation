@@ -1,0 +1,15 @@
+<Configuration>
+  <SnapshotDialog>
+    <InitialDirectory>E:\MvcNavigation\source</InitialDirectory>
+  </SnapshotDialog>
+  <CoverageFilters>
+    <IncludeFilters>
+      <Filter ModuleMask="*" ClassMask="*" FunctionMask="*" />
+    </IncludeFilters>
+    <ExcludeFilters>
+      <Filter ModuleMask="MvcNavigation.Specifications" ClassMask="MvcNavigation.Specifications.TestController" FunctionMask="*" />
+      <Filter ModuleMask="MvcNavigation" ClassMask="MvcNavigation.ViewDataContainer*" FunctionMask="*" />
+      <Filter ModuleMask="MvcNavigation.Specifications" ClassMask="MvcNavigation.Specifications.SpecUtils.RazorTemplateBase*" FunctionMask="*" />
+    </ExcludeFilters>
+  </CoverageFilters>
+</Configuration>
