@@ -1,0 +1,18 @@
+﻿@using MvcNavigation
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>@ViewBag.Title</title>
+	<link href="@Url.Content("~/css/master.css")" rel="stylesheet" type="text/css" />
+</head>
+	<body>
+		<div id="default-navigation">
+			<pre><code>Default navigation: @@Html.Menu()</code></pre>
+			@Html.Menu()
+		</div>
+		<div id="content">
+			@RenderBody()
+		</div>
+	</body>
+</html>

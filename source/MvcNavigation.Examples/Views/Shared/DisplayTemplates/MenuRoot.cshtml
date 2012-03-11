@@ -1,0 +1,9 @@
+﻿@model MvcNavigation.INode
+
+<ul>
+	<li>@Model.ActionInfo.Name</li>
+	@foreach (var child in Model.Children)
+	{
+		<li>@child.ActionInfo.Name</li>
+	}
+</ul>
