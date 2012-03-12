@@ -8,7 +8,7 @@
     </IncludeFilters>
     <ExcludeFilters>
       <Filter ModuleMask="MvcNavigation.Specifications" ClassMask="MvcNavigation.Specifications.TestController" FunctionMask="*" />
-      <Filter ModuleMask="MvcNavigation" ClassMask="MvcNavigation.ViewDataContainer*" FunctionMask="*" />
+      <Filter ModuleMask="MvcNavigation" ClassMask="MvcNavigation.Internal.ViewDataContainer*" FunctionMask="*" />
       <Filter ModuleMask="MvcNavigation.Specifications" ClassMask="MvcNavigation.Specifications.SpecUtils.RazorTemplateBase*" FunctionMask="*" />
     </ExcludeFilters>
   </CoverageFilters>

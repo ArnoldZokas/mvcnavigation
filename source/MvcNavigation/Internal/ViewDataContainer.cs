@@ -3,9 +3,9 @@
 
 using System.Web.Mvc;
 
-namespace MvcNavigation
+namespace MvcNavigation.Internal
 {
-	public class ViewDataContainer<TModel> : IViewDataContainer
+	internal class ViewDataContainer<TModel> : IViewDataContainer
 	{
 		public ViewDataContainer(TModel model)
 		{
