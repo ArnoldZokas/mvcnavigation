@@ -34,6 +34,8 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="HtmlHelperExtensionSpecs\action_link_spec.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_that_matches_current_path_is_requested.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_menu_is_requested.cs" />
     <Compile Include="SpecUtils\InMemoryRazorEngine.cs" />
     <Compile Include="NodeSpecs\when_initialised_with_null_child_nodes.cs" />
