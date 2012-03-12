@@ -15,11 +15,19 @@ namespace MvcNavigation
 	{
 		readonly List<INode> _childNodes;
 
-		public Node(Expression<Action<TController>> action) : this(action, new INode[0])
+		public Node(Expression<Action<TController>> action) : this(action, null, new INode[0])
 		{
 		}
 
-		public Node(Expression<Action<TController>> action, params INode[] childNodes)
+		public Node(Expression<Action<TController>> action, string title) : this(action, title, new INode[0])
+		{
+		}
+
+		public Node(Expression<Action<TController>> action, params INode[] childNodes) : this(action, null, childNodes)
+		{
+		}
+
+		public Node(Expression<Action<TController>> action, string title, params INode[] childNodes)
 		{
 			if (action == null)
 				throw new ArgumentNullException("action");
@@ -31,7 +39,7 @@ namespace MvcNavigation
 			if (methodCallExpression == null)
 				throw new ArgumentException("Node must be initialised with method call expression (e.g. controller => controller.Action())", "action");
 
-			Initialise(methodCallExpression);
+			Initialise(methodCallExpression, title);
 			_childNodes = new List<INode>(childNodes);
 		}
 
@@ -50,12 +58,15 @@ namespace MvcNavigation
 
 		#endregion
 
-		void Initialise(MethodCallExpression methodCallExpression)
+		void Initialise(MethodCallExpression methodCallExpression, string title)
 		{
 			ActionInfo = methodCallExpression.Method;
 
 			var actionNameAttribute = ActionInfo.GetCustomAttributes(typeof(ActionNameAttribute), inherit: true).Cast<ActionNameAttribute>().SingleOrDefault();
-			Title = ActionName = actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
+			var actionName = actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
+
+			Title = title ?? actionName;
+			ActionName = actionName;
 
 			ControllerName = ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty);
 		}

@@ -42,6 +42,7 @@
     <Compile Include="HtmlHelperExtensionSpecs\when_menu_is_requested_before_configuration.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_that_matches_current_path_is_requested.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_menu_is_requested.cs" />
+    <Compile Include="NodeSpecs\when_initialised_with_title_action.cs" />
     <Compile Include="NodeSpecs\when_initialised_with_action_decorated_with_action_name_attribute.cs" />
     <Compile Include="SpecUtils\InMemoryRazorEngine.cs" />
     <Compile Include="NodeSpecs\when_initialised_with_null_child_nodes.cs" />

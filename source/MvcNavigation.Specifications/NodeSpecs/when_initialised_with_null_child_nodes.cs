@@ -11,7 +11,7 @@ namespace MvcNavigation.Specifications.NodeSpecs
 	{
 		static Exception exception;
 
-		Because of = () => exception = Catch.Exception(() => new Node<TestController>(c => c.RootAction(), null));
+		Because of = () => exception = Catch.Exception(() => new Node<TestController>(c => c.RootAction(), (INode[])null));
 
 		It should_throw_argument_null_exception =
 			() => exception.GetType().ShouldEqual(typeof(ArgumentNullException));

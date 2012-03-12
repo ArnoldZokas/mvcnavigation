@@ -33,7 +33,7 @@ namespace MvcNavigation.IntegrationTests
 			var rootNode = new Node<HomeController>(
 				c => c.Index(),
 				new Node<HomeController>(c => c.About()),
-				new Node<HomeController>(c => c.Contact())
+				new Node<HomeController>(c => c.Contact(), title: "Contact Us")
 				);
 
 			NavigationConfiguration.Initialise(rootNode);
