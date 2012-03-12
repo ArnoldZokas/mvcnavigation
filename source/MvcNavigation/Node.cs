@@ -35,9 +35,24 @@ namespace MvcNavigation
 			_childNodes = new List<INode>(childNodes);
 		}
 
+		protected internal MethodInfo ActionInfo { get; set; }
+
 		#region INode Members
 
-		public MethodInfo ActionInfo { get; private set; }
+		public string Text
+		{
+			get { return ActionInfo.Name; }
+		}
+
+		public string ActionName
+		{
+			get { return ActionInfo.Name; }
+		}
+
+		public string ControllerName
+		{
+			get { return ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty); }
+		}
 
 		public ReadOnlyCollection<INode> Children
 		{

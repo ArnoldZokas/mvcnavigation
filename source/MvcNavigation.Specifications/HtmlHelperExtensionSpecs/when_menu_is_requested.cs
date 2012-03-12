@@ -5,10 +5,10 @@ using System.Web.Mvc;
 using Machine.Specifications;
 using MvcNavigation.Specifications.SpecUtils;
 
-namespace MvcNavigation.Specifications.MenuHelperSpecs
+namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 {
-	[Subject(typeof(MenuHelper))]
-	public class when_menu_is_generated
+	[Subject(typeof(HtmlHelperExtensions))]
+	public class when_menu_is_requested
 	{
 		static MvcHtmlString menu;
 
@@ -20,7 +20,7 @@ namespace MvcNavigation.Specifications.MenuHelperSpecs
 			                                                         new Node<TestController>(c => c.Action2())));
 
 			var htmlHelper = new HtmlHelper(new ViewContext(), new ViewPage());
-			MenuHelper.Renderer = (html, model) =>
+			HtmlHelperExtensions.Renderer = (html, model) =>
 			{
 				const string template = "<ul></ul>";
 
@@ -31,7 +31,7 @@ namespace MvcNavigation.Specifications.MenuHelperSpecs
 			menu = htmlHelper.Menu();
 		};
 
-		It should_do_x =
+		It should_generate_menu =
 			() => menu.ToString().ShouldEqual("<ul></ul>");
 	}
 }

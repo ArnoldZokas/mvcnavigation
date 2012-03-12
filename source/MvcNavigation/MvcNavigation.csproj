@@ -37,7 +37,7 @@
     <Compile Include="SitemapConfiguration.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MenuHelper.cs" />
+    <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="ViewDataContainer.cs" />
   </ItemGroup>

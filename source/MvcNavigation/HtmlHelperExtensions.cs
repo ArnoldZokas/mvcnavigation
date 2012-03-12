@@ -7,9 +7,9 @@ using System.Web.Mvc.Html;
 
 namespace MvcNavigation
 {
-	public static class MenuHelper
+	public static class HtmlHelperExtensions
 	{
-		static MenuHelper()
+		static HtmlHelperExtensions()
 		{
 			Renderer = (html, model) =>
 			{
@@ -22,8 +22,17 @@ namespace MvcNavigation
 
 		public static MvcHtmlString Menu(this HtmlHelper html)
 		{
+			// TODO: test null sitemap
+
 			var rootNode = SitemapConfiguration.Sitemap;
 			return Renderer(html, rootNode);
+		}
+
+		public static MvcHtmlString ActionLink(this HtmlHelper helper, INode linkTarget)
+		{
+			// TODO: test null linkTarget
+
+			return helper.ActionLink(linkTarget.Text, linkTarget.ActionName, linkTarget.ControllerName);
 		}
 	}
 }

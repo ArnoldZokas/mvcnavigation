@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 #if DEBUG
+
 [assembly: AssemblyConfiguration("DEBUG")]
 #elif RELEASE
 [assembly: AssemblyConfiguration("RELEASE")]
