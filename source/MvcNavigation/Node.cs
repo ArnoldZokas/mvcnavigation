@@ -31,8 +31,7 @@ namespace MvcNavigation
 			if (methodCallExpression == null)
 				throw new ArgumentException("Node must be initialised with method call expression (e.g. controller => controller.Action())", "action");
 
-			ActionInfo = methodCallExpression.Method;
-
+			Initialise(methodCallExpression);
 			_childNodes = new List<INode>(childNodes);
 		}
 
@@ -40,29 +39,9 @@ namespace MvcNavigation
 
 		#region INode Members
 
-		public string Title
-		{
-			get
-			{
-				var actionNameAttribute = ActionInfo.GetCustomAttributes(typeof(ActionNameAttribute), inherit: true).Cast<ActionNameAttribute>().SingleOrDefault();
-				return actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
-			}
-		}
-
-		public string ActionName
-		{
-			get { return ActionInfo.Name; }
-		}
-
-		public string ControllerName
-		{
-			get
-			{
-				// ReSharper disable PossibleNullReferenceException
-				return ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty);
-				// ReSharper restore PossibleNullReferenceException
-			}
-		}
+		public string Title { get; private set; }
+		public string ActionName { get; private set; }
+		public string ControllerName { get; private set; }
 
 		public ReadOnlyCollection<INode> Children
 		{
@@ -70,5 +49,17 @@ namespace MvcNavigation
 		}
 
 		#endregion
+
+		void Initialise(MethodCallExpression methodCallExpression)
+		{
+			ActionInfo = methodCallExpression.Method;
+
+			var actionNameAttribute = ActionInfo.GetCustomAttributes(typeof(ActionNameAttribute), inherit: true).Cast<ActionNameAttribute>().SingleOrDefault();
+			Title = actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
+
+			ActionName = ActionInfo.Name;
+
+			ControllerName = ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty);
+		}
 	}
 }
