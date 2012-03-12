@@ -24,6 +24,8 @@ namespace MvcNavigation.Examples
 			routes.MapRoute("Home", "", new { controller = "Home", action = "Home" });
 			routes.MapRoute("About", "about", new { controller = "Home", action = "About" });
 			routes.MapRoute("Contact", "contact", new { controller = "Home", action = "Contact" });
+
+			routes.MapRoute("Navigation", "navigation", new { controller = "Home", action = "Navigation" });
 		}
 
 		void ConfigureNavigation()

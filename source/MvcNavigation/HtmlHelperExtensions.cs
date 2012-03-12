@@ -42,8 +42,9 @@ namespace MvcNavigation
 			if (node == null)
 				throw new ArgumentNullException("node");
 
-			var contextControllerName = html.ViewContext.RouteData.Values["controller"].ToString();
-			var contextActionName = html.ViewContext.RouteData.Values["action"].ToString();
+			var viewContext = html.ViewContext.IsChildAction ? html.ViewContext.ParentActionViewContext : html.ViewContext;
+			var contextControllerName = viewContext.RouteData.Values["controller"].ToString();
+			var contextActionName = viewContext.RouteData.Values["action"].ToString();
 
 			return string.Equals(contextControllerName, node.ControllerName, StringComparison.OrdinalIgnoreCase) && string.Equals(contextActionName, node.ActionName, StringComparison.OrdinalIgnoreCase);
 		}

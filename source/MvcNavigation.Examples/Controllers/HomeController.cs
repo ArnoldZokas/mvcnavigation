@@ -22,5 +22,11 @@ namespace MvcNavigation.Examples.Controllers
 		{
 			return View();
 		}
+
+		[ChildActionOnly]
+		public ActionResult Navigation()
+		{
+			return View();
+		}
 	}
 }

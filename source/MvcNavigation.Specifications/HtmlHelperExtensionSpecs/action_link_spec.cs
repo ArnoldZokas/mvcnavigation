@@ -12,6 +12,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 {
 	public abstract class action_link_spec
 	{
+		protected static RouteData route_data;
 		protected static ViewContext view_context;
 		protected static RouteCollection route_collection;
 		protected static HtmlHelper html_helper;
@@ -27,7 +28,8 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			httpContextBase.SetupGet(hcb => hcb.Request).Returns(httpRequestBase.Object);
 			httpContextBase.SetupGet(hcb => hcb.Response).Returns(httpResponseBase.Object);
 
-			var requestContext = new RequestContext(httpContextBase.Object, new RouteData());
+			route_data = new RouteData();
+			var requestContext = new RequestContext(httpContextBase.Object, route_data);
 			view_context = new ViewContext { RequestContext = requestContext };
 			var viewDataContainer = new Mock<IViewDataContainer>();
 			route_collection = new RouteCollection();

@@ -7,9 +7,17 @@
 	<link href="@Url.Content("~/css/master.css")" rel="stylesheet" type="text/css" />
 </head>
 	<body>
-		<div id="default-navigation" class="navigation">
+		<div class="navigation">
 			<pre><code>Default navigation: @@Html.Menu()</code></pre>
 			@Html.Menu()
+		</div>
+		<div class="navigation">
+			<pre><code>Default navigation (rendered via partial view): @@Html.Menu()</code></pre>
+			@{ Html.RenderPartial("HeaderContainer"); }
+		</div>
+		<div class="navigation">
+			<pre><code>Default navigation (rendered via child action): @@Html.Menu()</code></pre>
+			@{ Html.RenderAction("Navigation", "Home"); }
 		</div>
 		<div id="content">
 			@RenderBody()
