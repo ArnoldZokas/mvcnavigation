@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNavigation", "MvcNavigat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNavigation.Specifications", "MvcNavigation.Specifications\MvcNavigation.Specifications.csproj", "{EC1397B3-9301-4D9C-99BF-D37437280E59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNavigation.Examples", "MvcNavigation.Examples\MvcNavigation.Examples.csproj", "{C60A7166-2124-4175-A105-F67EB58C1823}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNavigation.IntegrationTests", "MvcNavigation.IntegrationTests\MvcNavigation.IntegrationTests.csproj", "{C60A7166-2124-4175-A105-F67EB58C1823}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution

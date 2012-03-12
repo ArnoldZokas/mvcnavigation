@@ -3,7 +3,7 @@
 
 using System.Web.Mvc;
 
-namespace MvcNavigation.Examples.Controllers
+namespace MvcNavigation.IntegrationTests.Controllers
 {
 	public class HomeController : Controller
 	{
