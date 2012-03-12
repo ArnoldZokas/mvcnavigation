@@ -55,9 +55,7 @@ namespace MvcNavigation
 			ActionInfo = methodCallExpression.Method;
 
 			var actionNameAttribute = ActionInfo.GetCustomAttributes(typeof(ActionNameAttribute), inherit: true).Cast<ActionNameAttribute>().SingleOrDefault();
-			Title = actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
-
-			ActionName = ActionInfo.Name;
+			Title = ActionName = actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
 
 			ControllerName = ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty);
 		}

@@ -14,5 +14,8 @@ namespace MvcNavigation.Specifications.NodeSpecs
 
 		It should_set_title_to_action_name_attribute_value =
 			() => node.Title.ShouldEqual("Action");
+
+		It should_set_action_name_to_action_name_attribute_value =
+			() => node.ActionName.ShouldEqual("Action");
 	}
 }
