@@ -45,7 +45,7 @@
     <Compile Include="SpecUtils\RazorTemplateBase.cs" />
     <Compile Include="TestController.cs" />
     <Compile Include="SpecUtils\This.cs" />
-    <Compile Include="SitemapConfigurationSpecs\when_initialised.cs" />
+    <Compile Include="NavigationConfigurationSpecs\when_initialised.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_is_requested.cs" />
   </ItemGroup>

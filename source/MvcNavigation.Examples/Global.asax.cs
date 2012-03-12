@@ -34,7 +34,7 @@ namespace MvcNavigation.Examples
 				new Node<HomeController>(c => c.Contact())
 				);
 
-			SitemapConfiguration.Initialise(rootNode);
+			NavigationConfiguration.Initialise(rootNode);
 		}
 	}
 }

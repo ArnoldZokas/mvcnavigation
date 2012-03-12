@@ -51,7 +51,12 @@ namespace MvcNavigation
 
 		public string ControllerName
 		{
-			get { return ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty); }
+			get
+			{
+				// ReSharper disable PossibleNullReferenceException
+				return ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty);
+				// ReSharper restore PossibleNullReferenceException
+			}
 		}
 
 		public ReadOnlyCollection<INode> Children

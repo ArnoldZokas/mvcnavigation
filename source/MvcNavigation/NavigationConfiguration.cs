@@ -3,7 +3,7 @@
 
 namespace MvcNavigation
 {
-	public class SitemapConfiguration
+	public class NavigationConfiguration
 	{
 		public static INode Sitemap { get; private set; }
 

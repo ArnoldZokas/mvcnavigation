@@ -14,7 +14,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 
 		Because of = () =>
 		{
-			SitemapConfiguration.Initialise(
+			NavigationConfiguration.Initialise(
 			                                new Node<TestController>(c => c.RootAction(),
 			                                                         new Node<TestController>(c => c.Action1()),
 			                                                         new Node<TestController>(c => c.Action2())));

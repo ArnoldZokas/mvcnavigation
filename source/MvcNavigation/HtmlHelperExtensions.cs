@@ -15,7 +15,7 @@ namespace MvcNavigation
 			Renderer = (html, model) =>
 			{
 				var modelHtmlHelper = new HtmlHelper<INode>(html.ViewContext, new ViewDataContainer<INode>(model));
-				return modelHtmlHelper.DisplayFor(node => node, "MenuRoot");
+				return modelHtmlHelper.DisplayFor(node => node, "MvcNavigationMenuRoot");
 			};
 		}
 
@@ -25,7 +25,7 @@ namespace MvcNavigation
 		{
 			// TODO: test null sitemap
 
-			var rootNode = SitemapConfiguration.Sitemap;
+			var rootNode = NavigationConfiguration.Sitemap;
 			return Renderer(html, rootNode);
 		}
 
