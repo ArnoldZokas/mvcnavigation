@@ -7,7 +7,8 @@ namespace MvcNavigation.Examples.Controllers
 {
 	public class HomeController : Controller
 	{
-		public ActionResult Home()
+		[ActionName("Home")]
+		public ActionResult Index()
 		{
 			return View();
 		}

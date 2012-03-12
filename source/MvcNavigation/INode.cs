@@ -7,7 +7,7 @@ namespace MvcNavigation
 {
 	public interface INode
 	{
-		string Text { get; }
+		string Title { get; }
 		string ActionName { get; }
 		string ControllerName { get; }
 		ReadOnlyCollection<INode> Children { get; }

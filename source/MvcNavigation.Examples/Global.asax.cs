@@ -29,7 +29,7 @@ namespace MvcNavigation.Examples
 		void ConfigureNavigation()
 		{
 			var rootNode = new Node<HomeController>(
-				c => c.Home(),
+				c => c.Index(),
 				new Node<HomeController>(c => c.About()),
 				new Node<HomeController>(c => c.Contact())
 				);

@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Web.Mvc;
@@ -39,9 +40,13 @@ namespace MvcNavigation
 
 		#region INode Members
 
-		public string Text
+		public string Title
 		{
-			get { return ActionInfo.Name; }
+			get
+			{
+				var actionNameAttribute = ActionInfo.GetCustomAttributes(typeof(ActionNameAttribute), inherit: true).Cast<ActionNameAttribute>().SingleOrDefault();
+				return actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
+			}
 		}
 
 		public string ActionName

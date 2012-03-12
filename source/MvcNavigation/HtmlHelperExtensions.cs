@@ -31,7 +31,7 @@ namespace MvcNavigation
 			if (IsCurrentNode(html, linkTarget))
 				htmlAttributes = new { @class = NavigationConfiguration.CurrentNodeCssClass };
 
-			return html.ActionLink(linkTarget.Text, linkTarget.ActionName, linkTarget.ControllerName, null, htmlAttributes);
+			return html.ActionLink(linkTarget.Title, linkTarget.ActionName, linkTarget.ControllerName, null, htmlAttributes);
 		}
 
 		public static bool IsCurrentNode(this HtmlHelper html, INode node)
