@@ -27,10 +27,9 @@ namespace MvcNavigation
 			if (linkTarget == null)
 				throw new ArgumentNullException("linkTarget");
 
-			// TODO: make class configurable
 			object htmlAttributes = null;
 			if (IsCurrentNode(html, linkTarget))
-				htmlAttributes = new { @class = "current" };
+				htmlAttributes = new { @class = NavigationConfiguration.CurrentNodeCssClass };
 
 			return html.ActionLink(linkTarget.Text, linkTarget.ActionName, linkTarget.ControllerName, null, htmlAttributes);
 		}
