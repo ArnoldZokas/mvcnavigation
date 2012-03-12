@@ -18,24 +18,24 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 		Because of = () =>
 		{
 			var httpRequestBase = new Mock<HttpRequestBase>();
-			
+
 			var httpResponseBase = new Mock<HttpResponseBase>();
 			httpResponseBase.Setup(hrb => hrb.ApplyAppPathModifier(Moq.It.IsAny<string>())).Returns((string s) => s);
-			
+
 			var httpContextBase = new Mock<HttpContextBase>();
 			httpContextBase.SetupGet(hcb => hcb.Request).Returns(httpRequestBase.Object);
 			httpContextBase.SetupGet(hcb => hcb.Response).Returns(httpResponseBase.Object);
 
 			var requestContext = new RequestContext(httpContextBase.Object, new RouteData());
 			var viewContext = new ViewContext { RequestContext = requestContext };
-			
+
 			var viewDataContainer = new Mock<IViewDataContainer>();
 
 			var routeCollection = new RouteCollection();
 			routeCollection.MapRoute("Test", "action1", new { controller = "Test", action = "Action1" });
 
 			var htmlHelper = new HtmlHelper(viewContext, viewDataContainer.Object, routeCollection);
-			
+
 			link = htmlHelper.ActionLink(new Node<TestController>(c => c.Action1()));
 		};
 

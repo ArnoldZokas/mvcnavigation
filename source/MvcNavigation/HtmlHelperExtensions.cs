@@ -1,32 +1,20 @@
 // # Copyright © 2012, Arnold Zokas
 // # All rights reserved. 
 
-using System;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
-using MvcNavigation.Internal;
+using MvcNavigation.Configuration.Advanced;
 
 namespace MvcNavigation
 {
 	public static class HtmlHelperExtensions
 	{
-		static HtmlHelperExtensions()
-		{
-			Renderer = (html, model) =>
-			{
-				var modelHtmlHelper = new HtmlHelper<INode>(html.ViewContext, new ViewDataContainer<INode>(model));
-				return modelHtmlHelper.DisplayFor(node => node, "MvcNavigationMenuRoot");
-			};
-		}
-
-		public static Func<HtmlHelper, INode, MvcHtmlString> Renderer { get; set; }
-
 		public static MvcHtmlString Menu(this HtmlHelper html)
 		{
 			// TODO: test null sitemap
 
 			var rootNode = NavigationConfiguration.Sitemap;
-			return Renderer(html, rootNode);
+			return RendererConfiguration.MenuRenderer(html, rootNode);
 		}
 
 		public static MvcHtmlString ActionLink(this HtmlHelper helper, INode linkTarget)

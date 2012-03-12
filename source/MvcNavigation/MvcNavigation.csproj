@@ -40,6 +40,7 @@
     <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Internal\ViewDataContainer.cs" />
+    <Compile Include="Configuration\Advanced\RendererConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web" />

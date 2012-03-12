@@ -3,6 +3,7 @@
 
 using System.Web.Mvc;
 using Machine.Specifications;
+using MvcNavigation.Configuration.Advanced;
 using MvcNavigation.Specifications.SpecUtils;
 
 namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
@@ -15,12 +16,11 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 		Because of = () =>
 		{
 			NavigationConfiguration.Initialise(
-			                                new Node<TestController>(c => c.RootAction(),
-			                                                         new Node<TestController>(c => c.Action1()),
-			                                                         new Node<TestController>(c => c.Action2())));
+			                                   new Node<TestController>(c => c.RootAction(),
+			                                                            new Node<TestController>(c => c.Action1()),
+			                                                            new Node<TestController>(c => c.Action2())));
 
-			var htmlHelper = new HtmlHelper(new ViewContext(), new ViewPage());
-			HtmlHelperExtensions.Renderer = (html, model) =>
+			RendererConfiguration.MenuRenderer = (html, model) =>
 			{
 				const string template = "<ul></ul>";
 
@@ -28,6 +28,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 				return new MvcHtmlString(executionResult.RuntimeResult);
 			};
 
+			var htmlHelper = new HtmlHelper(new ViewContext(), new ViewPage());
 			menu = htmlHelper.Menu();
 		};
 
