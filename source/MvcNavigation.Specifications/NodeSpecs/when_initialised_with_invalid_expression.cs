@@ -13,7 +13,7 @@ namespace MvcNavigation.Specifications.NodeSpecs
 
 		Because of = () => exception = Catch.Exception(() => new Node<TestController>(c => new object()));
 
-		It should_throw_sitemap_configuration_exception =
+		It should_throw_argument_exception =
 			() => exception.GetType().ShouldEqual(typeof(ArgumentException));
 
 		It should_throw_exception_with_descriptive_message =

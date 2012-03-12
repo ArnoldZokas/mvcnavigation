@@ -12,7 +12,8 @@ namespace MvcNavigation
 	{
 		public static MvcHtmlString Menu(this HtmlHelper html)
 		{
-			// TODO: test null sitemap
+			if (NavigationConfiguration.Sitemap == null)
+				throw new InvalidOperationException("MvcNavigation is not initialised.");
 
 			var rootNode = NavigationConfiguration.Sitemap;
 			return RendererConfiguration.MenuRenderer(html, rootNode);
@@ -20,7 +21,11 @@ namespace MvcNavigation
 
 		public static MvcHtmlString ActionLink(this HtmlHelper html, INode linkTarget)
 		{
-			// TODO: test null linkTarget
+			if (html == null)
+				throw new ArgumentNullException("html");
+
+			if (linkTarget == null)
+				throw new ArgumentNullException("linkTarget");
 
 			// TODO: make class configurable
 			object htmlAttributes = null;
@@ -32,6 +37,12 @@ namespace MvcNavigation
 
 		public static bool IsCurrentNode(this HtmlHelper html, INode node)
 		{
+			if (html == null)
+				throw new ArgumentNullException("html");
+
+			if (node == null)
+				throw new ArgumentNullException("node");
+
 			var contextControllerName = html.ViewContext.RouteData.Values["controller"].ToString();
 			var contextActionName = html.ViewContext.RouteData.Values["action"].ToString();
 
