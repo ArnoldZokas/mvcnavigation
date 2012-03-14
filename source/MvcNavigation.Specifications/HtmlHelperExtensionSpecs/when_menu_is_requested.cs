@@ -20,7 +20,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			                                                            new Node<TestController>(c => c.Action1()),
 			                                                            new Node<TestController>(c => c.Action2())));
 
-			RendererConfiguration.MenuRenderer = (html, model) =>
+			RendererConfiguration.MenuRenderer = (html, model, maxLevels) =>
 			{
 				const string template = "<ul></ul>";
 

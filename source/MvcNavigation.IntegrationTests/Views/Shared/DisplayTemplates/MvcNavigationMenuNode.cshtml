@@ -1,0 +1,19 @@
+﻿@using MvcNavigation
+@model INode
+
+<li>
+	@Html.ActionLink(Model)
+	@if (ViewBag.CurrentLevel < ViewBag.MaxLevels)
+	{
+		if (Model.Children.Any() && (@Html.IsCurrentNode(Model) || @Html.IsAncestorOfCurrentNode(Model)))
+		{
+			var nextLevel = ViewBag.CurrentLevel + 1;
+			<ul>
+				@foreach(var childNode in Model.Children)
+				{
+					@Html.DisplayFor(node => childNode, "MvcNavigationMenuNode", new { ViewBag.MaxLevels, CurrentLevel = nextLevel })
+				}
+			</ul>
+		}
+	}
+</li>

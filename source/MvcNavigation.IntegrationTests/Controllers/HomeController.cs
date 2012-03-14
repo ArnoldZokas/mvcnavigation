@@ -18,6 +18,26 @@ namespace MvcNavigation.IntegrationTests.Controllers
 			return View();
 		}
 
+		public ActionResult History()
+		{
+			return View();
+		}
+
+		public ActionResult HistoryPage1()
+		{
+			return View();
+		}
+
+		public ActionResult HistoryPage2()
+		{
+			return View();
+		}
+
+		public ActionResult MoreHistory()
+		{
+			return View();
+		}
+
 		public ActionResult Contact()
 		{
 			return View();

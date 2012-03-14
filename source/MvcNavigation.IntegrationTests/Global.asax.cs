@@ -23,6 +23,8 @@ namespace MvcNavigation.IntegrationTests
 
 			routes.MapRoute("Home", "", new { controller = "Home", action = "Home" });
 			routes.MapRoute("About", "about", new { controller = "Home", action = "About" });
+			routes.MapRoute("About/History", "about/history", new { controller = "Home", action = "History" });
+			routes.MapRoute("About/MoreHistory", "about/more-history", new { controller = "Home", action = "MoreHistory" });
 			routes.MapRoute("Contact", "contact", new { controller = "Home", action = "Contact" });
 
 			routes.MapRoute("Navigation", "navigation", new { controller = "Home", action = "Navigation" });
@@ -32,7 +34,10 @@ namespace MvcNavigation.IntegrationTests
 		{
 			var rootNode = new Node<HomeController>(
 				c => c.Index(),
-				new Node<HomeController>(c => c.About()),
+				new Node<HomeController>(c => c.About(),
+					new Node<HomeController>(c => c.History()),
+					new Node<HomeController>(c => c.MoreHistory(), "More History")
+					),
 				new Node<HomeController>(c => c.Contact(), title: "Contact Us")
 				);
 

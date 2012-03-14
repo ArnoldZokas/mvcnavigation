@@ -7,11 +7,11 @@ using Machine.Specifications;
 namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 {
 	[Subject(typeof(HtmlHelperExtensions))]
-	public class when_link_for_node_is_requested_with_null_html_helper : action_link_spec
+	public class when_is_ancestor_of_current_node_is_invoked_with_null_html_helper : action_link_spec
 	{
 		static Exception exception;
 
-		Because of = () => exception = Catch.Exception(() => HtmlHelperExtensions.ActionLink(null, new Node<TestController>(c => c.Action1())));
+		Because of = () => exception = Catch.Exception(() => HtmlHelperExtensions.IsAncestorOfCurrentNode(null, new Node<TestController>(c => c.Action1())));
 
 		It should_throw_argument_null_exception =
 			() => exception.GetType().ShouldEqual(typeof(ArgumentNullException));

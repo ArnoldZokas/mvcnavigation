@@ -19,6 +19,14 @@ namespace MvcNavigation.Specifications
 		{
 		}
 
+		public void Action3()
+		{
+		}
+
+		public void Action4()
+		{
+		}
+
 		[ActionName("Action")]
 		public void DecoratedAction()
 		{

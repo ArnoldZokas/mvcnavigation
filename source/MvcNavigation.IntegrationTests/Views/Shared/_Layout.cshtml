@@ -19,6 +19,10 @@
 			<pre><code>Default navigation (rendered via child action): @@Html.Menu()</code></pre>
 			@{ Html.RenderAction("Navigation", "Home"); }
 		</div>
+		<div class="navigation multi-level">
+			<pre><code>Two-level horizontal navigation: @@Html.Menu(maxLevels: 2)</code></pre>
+			@Html.Menu(maxLevels: 2)
+		</div>
 		<div id="content">
 			@RenderBody()
 		</div>

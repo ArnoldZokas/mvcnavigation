@@ -14,6 +14,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 	{
 		protected static RouteData route_data;
 		protected static ViewContext view_context;
+		protected static ViewDataDictionary view_data;
 		protected static RouteCollection route_collection;
 		protected static HtmlHelper html_helper;
 
@@ -31,7 +32,11 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			route_data = new RouteData();
 			var requestContext = new RequestContext(httpContextBase.Object, route_data);
 			view_context = new ViewContext { RequestContext = requestContext };
+
+			view_data = new ViewDataDictionary();
 			var viewDataContainer = new Mock<IViewDataContainer>();
+			viewDataContainer.SetupGet(vdc => vdc.ViewData).Returns(view_data);
+
 			route_collection = new RouteCollection();
 
 			html_helper = new HtmlHelper(view_context, viewDataContainer.Object, route_collection);
