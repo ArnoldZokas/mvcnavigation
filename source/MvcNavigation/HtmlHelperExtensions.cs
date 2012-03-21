@@ -34,7 +34,7 @@ namespace MvcNavigation
 				throw new ArgumentNullException("linkTarget");
 
 			object htmlAttributes = null;
-			if (IsCurrentNode(html, linkTarget) || IsAncestorOfCurrentNode(html, linkTarget))
+			if (IsCurrentNode(html, linkTarget) || (IsRootNode(linkTarget) == false && IsAncestorOfCurrentNode(html, linkTarget)))
 				htmlAttributes = new { @class = NavigationConfiguration.CurrentNodeCssClass };
 
 			return html.ActionLink(linkTarget.Title, linkTarget.ActionName, linkTarget.ControllerName, null, htmlAttributes);
@@ -71,6 +71,11 @@ namespace MvcNavigation
 				return false;
 
 			return HasMatchingDescendant(node, contextControllerName, contextActionName, (int)html.ViewData["CurrentLevel"], (int)html.ViewData["MaxLevels"]);
+		}
+
+		static bool IsRootNode(INode node)
+		{
+			return NavigationConfiguration.Sitemap == node;
 		}
 
 		static bool HasMatchingDescendant(INode currentNode, string contextControllerName, string contextActionName, int currentLevel, int maxLevels)

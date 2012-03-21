@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,6 +36,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="HtmlHelperExtensionSpecs\action_link_spec.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_root_node_that_matches_descendant_path_is_requested.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_that_matches_descendant_path_is_requested.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_is_ancestor_of_current_node_is_invoked_with_node_that_is_outside_visible_range.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_is_ancestor_of_current_node_is_invoked_with_node_that_is_not_an_ancestor.cs" />
