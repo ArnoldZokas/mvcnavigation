@@ -22,7 +22,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 
 			RendererConfiguration.MenuRenderer = (html, model, maxLevels) =>
 			{
-				const string template = "<ul></ul>";
+				const string template = "<ul>@Model.Title</ul>";
 
 				var executionResult = InMemoryRazorEngine.Execute(template, model, typeof(INode).Assembly);
 				return new MvcHtmlString(executionResult.RuntimeResult);
@@ -33,6 +33,6 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 		};
 
 		It should_generate_menu =
-			() => menu.ToString().ShouldEqual("<ul></ul>");
+			() => menu.ToString().ShouldEqual("<ul>RootAction</ul>");
 	}
 }
