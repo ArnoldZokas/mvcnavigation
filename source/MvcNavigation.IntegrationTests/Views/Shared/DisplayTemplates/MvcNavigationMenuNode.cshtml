@@ -5,7 +5,7 @@
 	@Html.ActionLink(Model)
 	@if (ViewBag.CurrentLevel < ViewBag.MaxLevels)
 	{
-		if (Model.Children.Any() && (@Html.IsCurrentNode(Model) || @Html.IsAncestorOfCurrentNode(Model)))
+		if (Model.Children.Any() && ViewBag.RenderAllLevels || (@Html.IsCurrentNode(Model) || @Html.IsAncestorOfCurrentNode(Model)))
 		{
 			var nextLevel = ViewBag.CurrentLevel + 1;
 			<ul>

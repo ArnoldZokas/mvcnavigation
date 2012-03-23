@@ -12,13 +12,20 @@ namespace MvcNavigation.Configuration.Advanced
 	{
 		static RendererConfiguration()
 		{
-			MenuRenderer = (html, model, maxLevels) =>
+			MenuRenderer = (html, model, maxLevels, renderAllLevels) =>
 			{
 				var modelHtmlHelper = new HtmlHelper<INode>(html.ViewContext, new ViewDataContainer<INode>(model));
-				return modelHtmlHelper.DisplayFor(node => node, "MvcNavigationMenuRoot", new { CurrentLevel = 1, MaxLevels = maxLevels });
+				return modelHtmlHelper.DisplayFor(node => node,
+				                                  "MvcNavigationMenuRoot",
+				                                  new
+				                                  {
+				                                  	CurrentLevel = 1,
+				                                  	MaxLevels = maxLevels,
+				                                  	RenderAllLevels = renderAllLevels
+				                                  });
 			};
 		}
 
-		public static Func<HtmlHelper, INode, int, MvcHtmlString> MenuRenderer { get; set; }
+		public static Func<HtmlHelper, INode, int, bool, MvcHtmlString> MenuRenderer { get; set; }
 	}
 }

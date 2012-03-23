@@ -13,16 +13,21 @@ namespace MvcNavigation
 	{
 		public static MvcHtmlString Menu(this HtmlHelper html)
 		{
-			return Menu(html, maxLevels: 1);
+			return Menu(html, maxLevels: 1, renderAllLevels:false);
 		}
 
 		public static MvcHtmlString Menu(this HtmlHelper html, int maxLevels)
+		{
+			return Menu(html, maxLevels, renderAllLevels: false);
+		}
+
+		public static MvcHtmlString Menu(this HtmlHelper html, int maxLevels, bool renderAllLevels)
 		{
 			if (NavigationConfiguration.Sitemap == null)
 				throw new InvalidOperationException("MvcNavigation is not initialised.");
 
 			var rootNode = NavigationConfiguration.Sitemap;
-			return RendererConfiguration.MenuRenderer(html, rootNode, maxLevels);
+			return RendererConfiguration.MenuRenderer(html, rootNode, maxLevels, renderAllLevels);
 		}
 
 		public static MvcHtmlString ActionLink(this HtmlHelper html, INode linkTarget)

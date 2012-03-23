@@ -11,6 +11,13 @@ pre { margin-top:0; }
 ul { margin:0; padding:0; }
 li { float:left; list-style:none; }
 
+/* multi-level menu */
 .multi-level { height:120px; }
 .multi-level li { position:relative; }
 .multi-level ul ul { position:absolute; top:40px; left:0; width:600px; }
+
+/* dropdown menu */
+.dropdown { height:120px; }
+.dropdown li ul { display:none; }
+.dropdown li:hover ul { display:block; margin:30px 0 0 0; padding:0; position:absolute; }
+.dropdown li:hover li { float:none; }

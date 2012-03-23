@@ -23,6 +23,10 @@
 			<pre><code>Two-level horizontal navigation: @@Html.Menu(maxLevels: 2)</code></pre>
 			@Html.Menu(maxLevels: 2)
 		</div>
+		<div class="navigation dropdown">
+			<pre><code>Two-level dropdown navigation: @@Html.Menu(maxLevels: 2)</code></pre>
+			@Html.Menu(maxLevels: 2, renderAllLevels:true)
+		</div>
 		<div id="content">
 			@RenderBody()
 		</div>

@@ -43,6 +43,16 @@ namespace MvcNavigation.IntegrationTests.Controllers
 			return View();
 		}
 
+		public ActionResult ContactPage1()
+		{
+			return View();
+		}
+
+		public ActionResult ContactPage2()
+		{
+			return View();
+		}
+
 		[ChildActionOnly]
 		public ActionResult Navigation()
 		{
