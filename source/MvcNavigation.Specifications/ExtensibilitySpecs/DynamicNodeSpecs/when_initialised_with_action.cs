@@ -2,21 +2,25 @@
 // # All rights reserved. 
 
 using Machine.Specifications;
+using MvcNavigation.Extensibility;
 using MvcNavigation.Specifications.SpecUtils;
 
-namespace MvcNavigation.Specifications.NodeSpecs
+namespace MvcNavigation.Specifications.ExtensibilitySpecs.DynamicNodeSpecs
 {
-	[Subject(typeof(Node<>))]
+	[Subject(typeof(DynamicNode<>))]
 	public class when_initialised_with_action
 	{
-		static Node<TestController> node;
+		static DynamicNode<TestController> node;
 
-		Because of = () => node = new Node<TestController>(c => c.RootAction());
+		Because of = () => node = new DynamicNodeImpl<TestController>(c => c.RootAction());
 
 		It should_contain_action_info =
 			() => node.ActionInfo.ShouldEqual(This.Action<TestController>(c => c.RootAction()));
 
 		It should_set_controller_name =
 			() => node.ControllerName.ShouldEqual("Test");
+
+		It should_contain_generated_child_nodes =
+			() => node.Children.Count.ShouldEqual(2);
 	}
 }

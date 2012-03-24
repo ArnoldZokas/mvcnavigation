@@ -4,14 +4,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Web.Mvc;
 
 namespace MvcNavigation
 {
-	public class Node<TController> : INode where TController : IController
+	public class Node<TController> : NodeBase where TController : IController
 	{
 		readonly List<INode> _childNodes;
 
@@ -43,32 +41,9 @@ namespace MvcNavigation
 			_childNodes = new List<INode>(childNodes);
 		}
 
-		protected internal MethodInfo ActionInfo { get; set; }
-
-		#region INode Members
-
-		public string Title { get; private set; }
-		public string ActionName { get; private set; }
-		public string ControllerName { get; private set; }
-
-		public ReadOnlyCollection<INode> Children
+		public override ReadOnlyCollection<INode> Children
 		{
 			get { return new ReadOnlyCollection<INode>(_childNodes); }
-		}
-
-		#endregion
-
-		void Initialise(MethodCallExpression methodCallExpression, string title)
-		{
-			ActionInfo = methodCallExpression.Method;
-
-			var actionNameAttribute = ActionInfo.GetCustomAttributes(typeof(ActionNameAttribute), inherit: true).Cast<ActionNameAttribute>().SingleOrDefault();
-			var actionName = actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
-
-			Title = title ?? actionName;
-			ActionName = actionName;
-
-			ControllerName = ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty);
 		}
 	}
 }

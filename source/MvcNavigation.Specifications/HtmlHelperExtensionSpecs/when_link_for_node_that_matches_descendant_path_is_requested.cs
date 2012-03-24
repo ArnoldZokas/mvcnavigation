@@ -14,9 +14,9 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 		Because of = () =>
 		{
 			var rootNode = new Node<TestController>(c => c.RootAction(),
-													   new Node<TestController>(c => c.Action1()),
-													   new Node<TestController>(c => c.Action2(),
-																				new Node<TestController>(c => c.Action3())));
+			                                        new Node<TestController>(c => c.Action1()),
+			                                        new Node<TestController>(c => c.Action2(),
+			                                                                 new Node<TestController>(c => c.Action3())));
 
 			view_context.RouteData.Values.Add("controller", "Test");
 			view_context.RouteData.Values.Add("action", "Action3");

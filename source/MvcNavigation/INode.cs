@@ -2,6 +2,7 @@
 // # All rights reserved. 
 
 using System.Collections.ObjectModel;
+using System.Web.Routing;
 
 namespace MvcNavigation
 {
@@ -10,6 +11,7 @@ namespace MvcNavigation
 		string Title { get; }
 		string ActionName { get; }
 		string ControllerName { get; }
+		RouteValueDictionary Arguments { get; }
 		ReadOnlyCollection<INode> Children { get; }
 	}
 }

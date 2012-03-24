@@ -6,7 +6,7 @@ using Machine.Specifications;
 namespace MvcNavigation.Specifications.NodeSpecs
 {
 	[Subject(typeof(Node<>))]
-	public class when_initialised_with_title_custom_title
+	public class when_initialised_with_custom_title
 	{
 		static Node<TestController> node;
 

@@ -22,7 +22,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			view_data.Add("CurrentLevel", 1);
 			view_data.Add("MaxLevels", 1);
 
-			route_collection.MapRoute("Test", "root", new {controller = "Test", action = "RootAction"});
+			route_collection.MapRoute("Test", "root", new { controller = "Test", action = "RootAction" });
 
 			link = html_helper.ActionLink(NavigationConfiguration.Sitemap);
 		};

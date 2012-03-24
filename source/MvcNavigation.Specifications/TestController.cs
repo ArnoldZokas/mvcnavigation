@@ -31,5 +31,9 @@ namespace MvcNavigation.Specifications
 		public void DecoratedAction()
 		{
 		}
+
+		public void ParameterisedAction(int param1, string param2)
+		{
+		}
 	}
 }

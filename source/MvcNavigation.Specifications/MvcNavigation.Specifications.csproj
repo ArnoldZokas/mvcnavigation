@@ -35,7 +35,15 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\DynamicNodeImpl.cs" />
+    <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_action_decorated_with_action_name_attribute.cs" />
+    <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_invalid_expression.cs" />
+    <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_null_expression.cs" />
+    <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_title_custom_title.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\action_link_spec.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_that_matches_current_path_is_requested.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_parameterised_node_that_matches_current_parameter_is_requested.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_parameterised_node_that_does_not_match_current_path_is_requested.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_link_for_root_node_that_matches_descendant_path_is_requested.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_that_matches_descendant_path_is_requested.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_is_ancestor_of_current_node_is_invoked_with_node_that_is_outside_visible_range.cs" />
@@ -49,9 +57,11 @@
     <Compile Include="HtmlHelperExtensionSpecs\when_is_current_node_is_invoked_with_null_node.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_is_invoked_with_null_html_helper.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_menu_is_requested_before_configuration.cs" />
-    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_that_matches_current_path_is_requested.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_parameterised_node_that_matches_current_path_is_requested.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_menu_is_requested.cs" />
-    <Compile Include="NodeSpecs\when_initialised_with_title_action.cs" />
+    <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_action.cs" />
+    <Compile Include="NodeSpecs\when_initialised_with_parameterised_action.cs" />
+    <Compile Include="NodeSpecs\when_initialised_with_custom_title.cs" />
     <Compile Include="NodeSpecs\when_initialised_with_action_decorated_with_action_name_attribute.cs" />
     <Compile Include="SpecUtils\InMemoryRazorEngine.cs" />
     <Compile Include="NodeSpecs\when_initialised_with_null_child_nodes.cs" />
@@ -89,6 +99,7 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
