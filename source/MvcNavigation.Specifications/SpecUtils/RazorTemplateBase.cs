@@ -14,6 +14,8 @@ namespace MvcNavigation.Specifications.SpecUtils
 
 		public TModel Model { get; set; }
 
+		public dynamic ViewBag { get; set; }
+
 		public StringBuilder OutputBuilder { get; private set; }
 
 		public abstract void Execute();

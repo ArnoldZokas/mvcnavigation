@@ -11,7 +11,7 @@ using MvcNavigation.Specifications.SpecUtils;
 namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 {
 	[Subject(typeof(HtmlHelperExtensions))]
-	public class when_menu_is_requested
+	public class when_multi_level_menu_is_requested
 	{
 		static MvcHtmlString menu;
 
@@ -34,10 +34,10 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			};
 
 			var htmlHelper = new HtmlHelper(new ViewContext(), new ViewPage());
-			menu = htmlHelper.Menu();
+			menu = htmlHelper.Menu(maxLevels: 2);
 		};
 
 		It should_generate_menu =
-			() => menu.ToString().ShouldEqual("Title:RootAction, maxLevels:1, renderAllLevels:false");
+			() => menu.ToString().ShouldEqual("Title:RootAction, maxLevels:2, renderAllLevels:false");
 	}
 }

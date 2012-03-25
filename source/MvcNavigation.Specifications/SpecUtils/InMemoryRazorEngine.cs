@@ -14,7 +14,7 @@ namespace MvcNavigation.Specifications.SpecUtils
 {
 	public sealed class InMemoryRazorEngine
 	{
-		public static ExecutionResult Execute<TModel>(string razorTemplate, TModel model, params Assembly[] referenceAssemblies)
+		public static ExecutionResult Execute<TModel>(string razorTemplate, TModel model, dynamic viewBag, params Assembly[] referenceAssemblies)
 		{
 			var razorEngineHost = new RazorEngineHost(new CSharpRazorCodeLanguage());
 			razorEngineHost.DefaultNamespace = "RazorOutput";
@@ -47,6 +47,9 @@ namespace MvcNavigation.Specifications.SpecUtils
 
 				var modelProperty = compiledTemplateType.GetProperty("Model");
 				modelProperty.SetValue(compiledTemplate, model, null);
+
+				var viewBagProperty = compiledTemplateType.GetProperty("ViewBag");
+				viewBagProperty.SetValue(compiledTemplate, viewBag, null);
 
 				var executeMethod = compiledTemplateType.GetMethod("Execute");
 				executeMethod.Invoke(compiledTemplate, null);
