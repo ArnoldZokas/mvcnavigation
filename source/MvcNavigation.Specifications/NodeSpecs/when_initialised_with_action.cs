@@ -18,5 +18,8 @@ namespace MvcNavigation.Specifications.NodeSpecs
 
 		It should_set_controller_name =
 			() => node.ControllerName.ShouldEqual("Test");
+
+		It should_generate_string_representation_with_child_count_0 =
+			() => node.ToString().ShouldEqual("TestController.RootAction(), child count: 0");
 	}
 }

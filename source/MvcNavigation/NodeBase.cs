@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -63,6 +64,19 @@ namespace MvcNavigation
 					parameterInfo.Add(parameter.Name, ((ConstantExpression)argument).Value);
 			}
 			return parameterInfo;
+		}
+
+		public override string ToString()
+		{
+			var sb = new StringBuilder();
+			sb.AppendFormat("{0}.{1}()", ActionInfo.DeclaringType.Name, ActionInfo.Name);
+
+			if (ActionName != Title)
+				sb.AppendFormat(" \"{0}\"", Title);
+
+			sb.AppendFormat(", child count: {0}", Children.Count);
+
+			return sb.ToString();
 		}
 	}
 }

@@ -14,5 +14,8 @@ namespace MvcNavigation.Specifications.NodeSpecs
 
 		It should_set_title_to_custom_title =
 			() => node.Title.ShouldEqual("Custom Title");
+
+		It should_generate_string_representation_with_custom_title =
+			() => node.ToString().ShouldEqual("TestController.DecoratedAction() \"Custom Title\", child count: 0");
 	}
 }
