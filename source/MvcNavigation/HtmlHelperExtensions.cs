@@ -43,7 +43,7 @@ namespace MvcNavigation
 			if (IsCurrentNode(html, linkTarget) || (IsRootNode(linkTarget) == false && IsAncestorOfCurrentNode(html, linkTarget)))
 				htmlAttributes.Add("class", NavigationConfiguration.SelectedNodeCssClass);
 
-			return html.ActionLink(linkTarget.Title, linkTarget.ActionName, linkTarget.ControllerName, linkTarget.Arguments, htmlAttributes);
+			return html.ActionLink(linkTarget.Title, linkTarget.ActionName, linkTarget.ControllerName, linkTarget.RouteValues, htmlAttributes);
 		}
 
 		public static bool IsCurrentNode(this HtmlHelper html, INode node)
@@ -97,7 +97,7 @@ namespace MvcNavigation
 			if (string.Equals(contextControllerName, node.ControllerName, StringComparison.OrdinalIgnoreCase) == false || string.Equals(contextActionName, node.ActionName, StringComparison.OrdinalIgnoreCase) == false)
 				return false;
 
-			return additionalRouteData.All(routeDataItem => string.Equals(routeDataItem.Value.ToString(), node.Arguments[routeDataItem.Key].ToString(), StringComparison.OrdinalIgnoreCase));
+			return additionalRouteData.All(routeDataItem => string.Equals(routeDataItem.Value.ToString(), node.RouteValues[routeDataItem.Key].ToString(), StringComparison.OrdinalIgnoreCase));
 		}
 
 		static ViewContext GetViewContext(HtmlHelper html)

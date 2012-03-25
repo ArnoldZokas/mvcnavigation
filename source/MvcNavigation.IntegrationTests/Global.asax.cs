@@ -14,6 +14,8 @@ namespace MvcNavigation.IntegrationTests
 		{
 			RegisterRoutes(RouteTable.Routes);
 
+			AreaRegistration.RegisterAllAreas();
+
 			ConfigureNavigation();
 		}
 
@@ -23,13 +25,6 @@ namespace MvcNavigation.IntegrationTests
 
 			routes.MapRoute("Home", "", new { controller = "Home", action = "Home" });
 
-			routes.MapRoute("Shop", "shop", new { controller = "Product", action = "Shop" });
-			routes.MapRoute("Shop/Category", "shop/category/{id}", new { controller = "Product", action = "Category" });
-			
-			routes.MapRoute("About", "about", new { controller = "Home", action = "About" });
-			routes.MapRoute("About/History", "about/history", new { controller = "Home", action = "History" });
-			routes.MapRoute("About/MoreHistory", "about/more-history", new { controller = "Home", action = "MoreHistory" });
-			
 			routes.MapRoute("Contact", "contact", new { controller = "Home", action = "Contact" });
 			routes.MapRoute("Contact/Page 1", "contact/page-1", new { controller = "Home", action = "ContactPage1" });
 			routes.MapRoute("Contact/Page 2", "contact/page-2", new { controller = "Home", action = "ContactPage2" });
@@ -41,11 +36,11 @@ namespace MvcNavigation.IntegrationTests
 		{
 			var rootNode = new Node<HomeController>(
 				c => c.Index(),
-				new ShopNode<ProductController>(c => c.Index()),
-				new Node<HomeController>(
+				new ShopNode<ProductController, ShopAreaRegistration>(c => c.Index()),
+				new Node<HomeController, AboutAreaRegistration>(
 					c => c.About(),
-					new Node<HomeController>(c => c.History()),
-					new Node<HomeController>(c => c.MoreHistory(), "More History")),
+					new Node<HomeController, AboutAreaRegistration>(c => c.History()),
+					new Node<HomeController, AboutAreaRegistration>(c => c.MoreHistory(), "More History")),
 				new Node<HomeController>(
 					c => c.Contact(), "Contact Us",
 					new Node<HomeController>(c => c.ContactPage1(), "Page 1"),
@@ -53,6 +48,35 @@ namespace MvcNavigation.IntegrationTests
 				);
 
 			NavigationConfiguration.Initialise(rootNode);
+		}
+	}
+
+	public class AboutAreaRegistration : AreaRegistration
+	{
+		public override string AreaName
+		{
+			get { return "About"; }
+		}
+
+		public override void RegisterArea(AreaRegistrationContext context)
+		{
+			context.MapRoute("About", "about", new { controller = "Home", action = "About" });
+			context.MapRoute("About/History", "about/history", new { controller = "Home", action = "History" });
+			context.MapRoute("About/MoreHistory", "about/more-history", new { controller = "Home", action = "MoreHistory" });
+		}
+	}
+
+	public class ShopAreaRegistration : AreaRegistration
+	{
+		public override string AreaName
+		{
+			get { return "Shop"; }
+		}
+
+		public override void RegisterArea(AreaRegistrationContext context)
+		{
+			context.MapRoute("Shop", "shop", new { controller = "Product", action = "Shop" });
+			context.MapRoute("Shop/Category", "shop/category/{id}", new { controller = "Product", action = "Category" });
 		}
 	}
 }

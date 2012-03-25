@@ -35,7 +35,14 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\AreaAwareDynamicNodeImpl.cs" />
+    <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_area_registraion.cs" />
     <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\DynamicNodeImpl.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_that_uses_area_registration_is_requested.cs" />
+    <Compile Include="NodeSpecs\when_initialised_with_area_registration_and_1_child_node.cs" />
+    <Compile Include="NodeSpecs\when_initialised_with_area_registration_and_custom_title.cs" />
+    <Compile Include="NodeSpecs\when_initialised_with_area_registraion.cs" />
+    <Compile Include="TestAreaRegistration.cs" />
     <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_action_decorated_with_action_name_attribute.cs" />
     <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_invalid_expression.cs" />
     <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_null_expression.cs" />

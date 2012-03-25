@@ -1,6 +1,7 @@
 // # Copyright © 2012, Arnold Zokas
 // # All rights reserved. 
 
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Linq.Expressions;
@@ -20,8 +21,9 @@ namespace MvcNavigation
 		public virtual string ActionName { get; protected set; }
 		public virtual string Title { get; protected set; }
 		public virtual string ControllerName { get; protected set; }
+		public virtual string AreaName { get; protected set; }
 		public abstract ReadOnlyCollection<INode> Children { get; }
-		public virtual RouteValueDictionary Arguments { get; protected set; }
+		public virtual RouteValueDictionary RouteValues { get; protected set; }
 
 		#endregion
 
@@ -32,7 +34,8 @@ namespace MvcNavigation
 			ActionName = GetActionName();
 			Title = title ?? ActionName;
 			ControllerName = GetControllerName();
-			Arguments = GetParameters(methodCallExpression);
+			AreaName = "";
+			RouteValues = GetRouteValues(methodCallExpression);
 		}
 
 		string GetActionName()
@@ -49,21 +52,29 @@ namespace MvcNavigation
 			// ReSharper restore PossibleNullReferenceException
 		}
 
-		RouteValueDictionary GetParameters(MethodCallExpression methodCallExpression)
+		RouteValueDictionary GetRouteValues(MethodCallExpression methodCallExpression)
 		{
-			var parameterInfo = new RouteValueDictionary();
+			var routeValues = new RouteValueDictionary();
 			var parameters = ActionInfo.GetParameters();
 			var arguments = methodCallExpression.Arguments;
 
-			for (int i = 0; i < parameters.Length; i++)
+			for (var i = 0; i < parameters.Length; i++)
 			{
 				var parameter = parameters[i];
 				var argument = arguments[i];
 
 				if (argument.NodeType == ExpressionType.Constant)
-					parameterInfo.Add(parameter.Name, ((ConstantExpression)argument).Value);
+					routeValues.Add(parameter.Name, ((ConstantExpression)argument).Value);
 			}
-			return parameterInfo;
+
+			SetAreaName(routeValues, AreaName);
+
+			return routeValues;
+		}
+
+		protected void SetAreaName(RouteValueDictionary routeValues, string areaName)
+		{
+			routeValues["area"] = areaName;
 		}
 
 		public override string ToString()

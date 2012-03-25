@@ -11,7 +11,7 @@ using MvcNavigation.IntegrationTests.Controllers;
 
 namespace MvcNavigation.IntegrationTests
 {
-	public class ShopNode<TController> : DynamicNode<TController> where TController : IController
+	public class ShopNode<TController, TAreaRegistration> : DynamicNode<TController, TAreaRegistration> where TController : IController where TAreaRegistration : AreaRegistration
 	{
 		public ShopNode(Expression<Action<TController>> action) : base(action)
 		{
@@ -26,11 +26,11 @@ namespace MvcNavigation.IntegrationTests
 			get
 			{
 				var childNodes = new List<INode>
-				                 {
-				                 	new Node<ProductController>(c => c.Category(1), title: "Category 1 (dynamic)"),
-				                 	new Node<ProductController>(c => c.Category(2), title: "Category 2 (dynamic)"),
-				                 	new Node<ProductController>(c => c.Category(3), title: "Category 3 (dynamic)")
-				                 };
+				{
+					new Node<ProductController, ShopAreaRegistration>(c => c.Category(1), title: "Category 1 (dynamic)"),
+					new Node<ProductController, ShopAreaRegistration>(c => c.Category(2), title: "Category 2 (dynamic)"),
+					new Node<ProductController, ShopAreaRegistration>(c => c.Category(3), title: "Category 3 (dynamic)")
+				};
 
 
 				return new ReadOnlyCollection<INode>(childNodes);

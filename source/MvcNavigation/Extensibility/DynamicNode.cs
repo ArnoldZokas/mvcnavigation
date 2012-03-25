@@ -25,4 +25,19 @@ namespace MvcNavigation.Extensibility
 			Initialise(methodCallExpression, title);
 		}
 	}
+
+	public abstract class DynamicNode<TController, TAreaRegistration> : DynamicNode<TController> where TController : IController where TAreaRegistration : AreaRegistration
+	{
+		protected DynamicNode(Expression<Action<TController>> action) : this(action, null)
+		{
+		}
+
+		protected DynamicNode(Expression<Action<TController>> action, string title) : base(action, title)
+		{
+			// ReSharper disable DoNotCallOverridableMethodsInConstructor
+			AreaName = Activator.CreateInstance<TAreaRegistration>().AreaName;
+			SetAreaName(RouteValues, AreaName);
+			// ReSharper restore DoNotCallOverridableMethodsInConstructor
+		}
+	}
 }

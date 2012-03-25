@@ -46,4 +46,27 @@ namespace MvcNavigation
 			get { return new ReadOnlyCollection<INode>(_childNodes); }
 		}
 	}
+
+	public class Node<TController, TAreaRegistration> : Node<TController> where TController : IController where TAreaRegistration : AreaRegistration
+	{
+		public Node(Expression<Action<TController>> action) : this(action, null, new INode[0])
+		{
+		}
+
+		public Node(Expression<Action<TController>> action, string title) : this(action, title, new INode[0])
+		{
+		}
+
+		public Node(Expression<Action<TController>> action, params INode[] childNodes) : this(action, null, childNodes)
+		{
+		}
+
+		public Node(Expression<Action<TController>> action, string title, params INode[] childNodes) : base(action, title, childNodes)
+		{
+			// ReSharper disable DoNotCallOverridableMethodsInConstructor
+			AreaName = Activator.CreateInstance<TAreaRegistration>().AreaName;
+			SetAreaName(RouteValues, AreaName);
+			// ReSharper restore DoNotCallOverridableMethodsInConstructor
+		}
+	}
 }

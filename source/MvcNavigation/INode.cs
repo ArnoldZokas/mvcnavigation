@@ -11,7 +11,8 @@ namespace MvcNavigation
 		string ActionName { get; }
 		string Title { get; }
 		string ControllerName { get; }
-		RouteValueDictionary Arguments { get; }
+		string AreaName { get; }
+		RouteValueDictionary RouteValues { get; }
 		ReadOnlyCollection<INode> Children { get; }
 	}
 }
