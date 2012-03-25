@@ -41,7 +41,7 @@ namespace MvcNavigation
 
 			var htmlAttributes = new Dictionary<string, object>();
 			if (IsCurrentNode(html, linkTarget) || (IsRootNode(linkTarget) == false && IsAncestorOfCurrentNode(html, linkTarget)))
-				htmlAttributes.Add("class", NavigationConfiguration.CurrentNodeCssClass);
+				htmlAttributes.Add("class", NavigationConfiguration.SelectedNodeCssClass);
 
 			return html.ActionLink(linkTarget.Title, linkTarget.ActionName, linkTarget.ControllerName, linkTarget.Arguments, htmlAttributes);
 		}

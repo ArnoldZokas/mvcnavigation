@@ -7,11 +7,11 @@ namespace MvcNavigation
 	{
 		static NavigationConfiguration()
 		{
-			CurrentNodeCssClass = "current";
+			SelectedNodeCssClass = "selected";
 		}
 
 		public static INode Sitemap { get; private set; }
-		public static string CurrentNodeCssClass { get; set; }
+		public static string SelectedNodeCssClass { get; set; }
 
 		public static void Initialise(INode rootNode)
 		{

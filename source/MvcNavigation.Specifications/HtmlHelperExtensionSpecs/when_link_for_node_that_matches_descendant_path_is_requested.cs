@@ -30,6 +30,6 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 		};
 
 		It should_generate_link_with_marker_css_class =
-			() => link.ToString().ShouldEqual("<a class=\"current\" href=\"/root\">RootAction</a>");
+			() => link.ToString().ShouldEqual("<a class=\"selected\" href=\"/root\">RootAction</a>");
 	}
 }
