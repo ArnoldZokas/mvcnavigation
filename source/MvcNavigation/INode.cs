@@ -8,8 +8,8 @@ namespace MvcNavigation
 {
 	public interface INode
 	{
-		string Title { get; }
 		string ActionName { get; }
+		string Title { get; }
 		string ControllerName { get; }
 		RouteValueDictionary Arguments { get; }
 		ReadOnlyCollection<INode> Children { get; }

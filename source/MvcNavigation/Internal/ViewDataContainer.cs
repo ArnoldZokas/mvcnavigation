@@ -7,7 +7,7 @@ namespace MvcNavigation.Internal
 {
 	internal class ViewDataContainer<TModel> : IViewDataContainer
 	{
-		public ViewDataContainer(TModel model)
+		internal ViewDataContainer(TModel model)
 		{
 			ViewData = new ViewDataDictionary<TModel>(model);
 		}

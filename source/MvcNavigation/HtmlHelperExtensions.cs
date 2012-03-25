@@ -54,21 +54,12 @@ namespace MvcNavigation
 			if (node == null)
 				throw new ArgumentNullException("node");
 
-			var viewContext = html.ViewContext.IsChildAction ? html.ViewContext.ParentActionViewContext : html.ViewContext;
-			var contextControllerName = viewContext.RouteData.Values["controller"].ToString();
-			var contextActionName = viewContext.RouteData.Values["action"].ToString();
+			var viewContext = GetViewContext(html);
+			var contextControllerName = GetContextControllerName(viewContext);
+			var contextActionName = GetContextActionName(viewContext);
+			var additionalRouteData = GetAdditionalRouteData(viewContext);
 
-			if (string.Equals(contextControllerName, node.ControllerName, StringComparison.OrdinalIgnoreCase) == false || string.Equals(contextActionName, node.ActionName, StringComparison.OrdinalIgnoreCase) == false)
-				return false;
-
-			var nonSystemRouteData = viewContext.RouteData.Values.Where(v => v.Key != "controller" && v.Key != "action");
-			foreach (var routeDataItem in nonSystemRouteData)
-			{
-				if (string.Equals(routeDataItem.Value.ToString(), node.Arguments[routeDataItem.Key].ToString(), StringComparison.OrdinalIgnoreCase) == false)
-					return false;
-			}
-
-			return true;
+			return IsCurrentNode(node, contextControllerName, contextActionName, additionalRouteData);
 		}
 
 		public static bool IsAncestorOfCurrentNode(this HtmlHelper html, INode node)
@@ -79,14 +70,54 @@ namespace MvcNavigation
 			if (node == null)
 				throw new ArgumentNullException("node");
 
-			var viewContext = html.ViewContext.IsChildAction ? html.ViewContext.ParentActionViewContext : html.ViewContext;
-			var contextControllerName = viewContext.RouteData.Values["controller"].ToString();
-			var contextActionName = viewContext.RouteData.Values["action"].ToString();
+			var viewContext = GetViewContext(html);
+			var contextControllerName = GetContextControllerName(viewContext);
+			var contextActionName = GetContextActionName(viewContext);
+			var additionalRouteData = GetAdditionalRouteData(viewContext);
 
-			if (node.Children.Any() == false)
+			return node.Children.Any() && HasMatchingDescendant(node, contextControllerName, contextActionName, additionalRouteData, (int)html.ViewData["CurrentLevel"], (int)html.ViewData["MaxLevels"]);
+		}
+
+		static bool HasMatchingDescendant(INode currentNode, string contextControllerName, string contextActionName, IEnumerable<KeyValuePair<string, object>> additionalRouteData, int currentLevel, int maxLevels)
+		{
+			// check immediate children for match
+			if (currentNode.Children.Any(childNode => IsCurrentNode(childNode, contextControllerName, contextActionName, additionalRouteData)))
+				return true;
+
+			// ensure scan depth does not exceed specified scan range
+			if (currentLevel + 1 > maxLevels)
 				return false;
 
-			return HasMatchingDescendant(node, contextControllerName, contextActionName, (int)html.ViewData["CurrentLevel"], (int)html.ViewData["MaxLevels"]);
+			// check descendants
+			return currentNode.Children.Any(childNode => HasMatchingDescendant(childNode, contextControllerName, contextActionName, additionalRouteData, currentLevel++, maxLevels));
+		}
+
+		static bool IsCurrentNode(INode node, string contextControllerName, string contextActionName, IEnumerable<KeyValuePair<string, object>> additionalRouteData)
+		{
+			if (string.Equals(contextControllerName, node.ControllerName, StringComparison.OrdinalIgnoreCase) == false || string.Equals(contextActionName, node.ActionName, StringComparison.OrdinalIgnoreCase) == false)
+				return false;
+
+			return additionalRouteData.All(routeDataItem => string.Equals(routeDataItem.Value.ToString(), node.Arguments[routeDataItem.Key].ToString(), StringComparison.OrdinalIgnoreCase));
+		}
+
+		static ViewContext GetViewContext(HtmlHelper html)
+		{
+			return html.ViewContext.IsChildAction ? html.ViewContext.ParentActionViewContext : html.ViewContext;
+		}
+
+		static string GetContextControllerName(ViewContext viewContext)
+		{
+			return viewContext.RouteData.Values[RouteDataKeys.Controller].ToString();
+		}
+
+		static string GetContextActionName(ViewContext viewContext)
+		{
+			return viewContext.RouteData.Values[RouteDataKeys.Action].ToString();
+		}
+
+		static IEnumerable<KeyValuePair<string, object>> GetAdditionalRouteData(ViewContext viewContext)
+		{
+			return viewContext.RouteData.Values.Where(v => v.Key != RouteDataKeys.Controller && v.Key != RouteDataKeys.Action);
 		}
 
 		static bool IsRootNode(INode node)
@@ -94,20 +125,14 @@ namespace MvcNavigation
 			return NavigationConfiguration.Sitemap == node;
 		}
 
-		static bool HasMatchingDescendant(INode currentNode, string contextControllerName, string contextActionName, int currentLevel, int maxLevels)
+		#region Nested type: RouteDataKeys
+
+		internal static class RouteDataKeys
 		{
-			foreach (var childNode in currentNode.Children)
-				if (string.Equals(contextControllerName, childNode.ControllerName, StringComparison.OrdinalIgnoreCase) && string.Equals(contextActionName, childNode.ActionName, StringComparison.OrdinalIgnoreCase))
-					return true;
-
-			if (currentLevel + 1 > maxLevels)
-				return false;
-
-			foreach (var childNode in currentNode.Children)
-				if (HasMatchingDescendant(childNode, contextControllerName, contextActionName, currentLevel++, maxLevels))
-					return true;
-
-			return false;
+			public const string Action = "action";
+			public const string Controller = "controller";
 		}
+
+		#endregion
 	}
 }

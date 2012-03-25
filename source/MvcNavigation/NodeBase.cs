@@ -16,8 +16,8 @@ namespace MvcNavigation
 
 		#region INode Members
 
-		public virtual string Title { get; protected set; }
 		public virtual string ActionName { get; protected set; }
+		public virtual string Title { get; protected set; }
 		public virtual string ControllerName { get; protected set; }
 		public abstract ReadOnlyCollection<INode> Children { get; }
 		public virtual RouteValueDictionary Arguments { get; protected set; }
@@ -28,6 +28,28 @@ namespace MvcNavigation
 		{
 			ActionInfo = methodCallExpression.Method;
 
+			ActionName = GetActionName();
+			Title = title ?? ActionName;
+			ControllerName = GetControllerName();
+			Arguments = GetParameters(methodCallExpression);
+		}
+
+		string GetActionName()
+		{
+			var actionNameAttribute = ActionInfo.GetCustomAttributes(typeof(ActionNameAttribute), inherit: true).Cast<ActionNameAttribute>().SingleOrDefault();
+			var actionName = actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
+			return actionName;
+		}
+
+		string GetControllerName()
+		{
+			// ReSharper disable PossibleNullReferenceException
+			return ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty);
+			// ReSharper restore PossibleNullReferenceException
+		}
+
+		RouteValueDictionary GetParameters(MethodCallExpression methodCallExpression)
+		{
 			var parameterInfo = new RouteValueDictionary();
 			var parameters = ActionInfo.GetParameters();
 			var arguments = methodCallExpression.Arguments;
@@ -40,16 +62,7 @@ namespace MvcNavigation
 				if (argument.NodeType == ExpressionType.Constant)
 					parameterInfo.Add(parameter.Name, ((ConstantExpression)argument).Value);
 			}
-
-			Arguments = parameterInfo;
-
-			var actionNameAttribute = ActionInfo.GetCustomAttributes(typeof(ActionNameAttribute), inherit: true).Cast<ActionNameAttribute>().SingleOrDefault();
-			var actionName = actionNameAttribute != null ? actionNameAttribute.Name : ActionInfo.Name;
-
-			Title = title ?? actionName;
-			ActionName = actionName;
-
-			ControllerName = ActionInfo.DeclaringType.Name.Replace("Controller", string.Empty);
+			return parameterInfo;
 		}
 	}
 }
