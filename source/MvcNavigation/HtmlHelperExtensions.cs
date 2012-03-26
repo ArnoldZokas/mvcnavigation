@@ -12,6 +12,8 @@ namespace MvcNavigation
 {
 	public static class HtmlHelperExtensions
 	{
+		#region Menu
+
 		public static MvcHtmlString Menu(this HtmlHelper html)
 		{
 			return Menu(html, maxLevels: 1, renderAllLevels: false);
@@ -50,6 +52,31 @@ namespace MvcNavigation
 			return RendererConfiguration.MenuRenderer(html, namedSitemap, maxLevels, renderAllLevels);
 		}
 
+		#endregion
+
+		#region Breadcrumb
+
+		public static MvcHtmlString Breadcrumb(this HtmlHelper html)
+		{
+			if (NavigationConfiguration.DefaultSitemap == null)
+				throw new InvalidOperationException("MvcNavigation is not initialised.");
+
+			var breadcrumbTrail = ConstructBreadcrumbTrail(html, NavigationConfiguration.DefaultSitemap);
+			return RendererConfiguration.BreadcrumbRenderer(html, breadcrumbTrail);
+		}
+
+		public static MvcHtmlString Breadcrumb(this HtmlHelper html, string name)
+		{
+			var namedSitemap = NavigationConfiguration.GetSitemap(name);
+			if (namedSitemap == null)
+				throw new InvalidOperationException(string.Format("Sitemap \"{0}\" is not initialised.", name));
+
+			var breadcrumbTrail = ConstructBreadcrumbTrail(html, namedSitemap);
+			return RendererConfiguration.BreadcrumbRenderer(html, breadcrumbTrail);
+		}
+
+		#endregion
+
 		public static MvcHtmlString ActionLink(this HtmlHelper html, INode linkTarget)
 		{
 			if (html == null)
@@ -63,6 +90,18 @@ namespace MvcNavigation
 				htmlAttributes.Add("class", NavigationConfiguration.SelectedNodeCssClass);
 
 			return html.ActionLink(linkTarget.Title, linkTarget.ActionName, linkTarget.ControllerName, linkTarget.RouteValues, htmlAttributes);
+		}
+
+		public static MvcHtmlString ActionLink(this HtmlHelper html, LinkedListNode<INode> linkTarget)
+		{
+			if (html == null)
+				throw new ArgumentNullException("html");
+
+			if (linkTarget == null)
+				throw new ArgumentNullException("linkTarget");
+
+			var node = linkTarget.Value;
+			return html.ActionLink(node.Title, node.ActionName, node.ControllerName, node.RouteValues, null);
 		}
 
 		public static bool IsCurrentNode(this HtmlHelper html, INode node)
@@ -117,7 +156,7 @@ namespace MvcNavigation
 			if (string.Equals(contextControllerName, node.ControllerName, StringComparison.OrdinalIgnoreCase) == false || string.Equals(contextActionName, node.ActionName, StringComparison.OrdinalIgnoreCase) == false)
 				return false;
 
-			return additionalRouteData.All(routeDataItem => string.Equals(routeDataItem.Value.ToString(), node.RouteValues[routeDataItem.Key].ToString(), StringComparison.OrdinalIgnoreCase));
+			return additionalRouteData.All(routeDataItem => string.Equals(routeDataItem.Value.ToString(), node.RouteValues[routeDataItem.Key] != null ? node.RouteValues[routeDataItem.Key].ToString() : null, StringComparison.OrdinalIgnoreCase));
 		}
 
 		static ViewContext GetViewContext(HtmlHelper html)
@@ -143,6 +182,42 @@ namespace MvcNavigation
 		static bool IsRootNode(INode node)
 		{
 			return node.Parent == null;
+		}
+
+		static LinkedList<INode> ConstructBreadcrumbTrail(HtmlHelper html, INode sitemap)
+		{
+			var current = FindNode(sitemap, node => IsCurrentNode(html, node));
+			if (current == null)
+				return new LinkedList<INode>();
+
+			var breadcrumbTrail = new LinkedList<INode>();
+			breadcrumbTrail.AddLast(current);
+			while (current.Parent != null)
+			{
+				breadcrumbTrail.AddFirst(current.Parent);
+				current = current.Parent;
+			}
+
+			return breadcrumbTrail;
+		}
+
+		static INode FindNode(INode startNode, Func<INode, bool> predicate)
+		{
+			var queue = new Queue<INode>();
+			queue.Enqueue(startNode);
+
+			while (queue.Count > 0)
+			{
+				var current = queue.Dequeue();
+
+				if (predicate(current))
+					return current;
+
+				foreach (var childNode in current.Children)
+					queue.Enqueue(childNode);
+			}
+
+			return null;
 		}
 
 		#region Nested type: RouteDataKeys

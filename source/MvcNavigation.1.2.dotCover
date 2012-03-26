@@ -12,6 +12,7 @@
       <Filter ModuleMask="MvcNavigation.Specifications" ClassMask="MvcNavigation.Specifications.TestAreaRegistration" FunctionMask="*" />
       <Filter ModuleMask="MvcNavigation.Specifications" ClassMask="MvcNavigation.Specifications.TestController" FunctionMask="*" />
       <Filter ModuleMask="MvcNavigation.Specifications" ClassMask="MvcNavigation.Specifications.ExtensibilitySpecs.DynamicNodeSpecs.AreaAwareDynamicNodeImpl*" FunctionMask="*" />
+      <Filter ModuleMask="MvcNavigation.Specifications" ClassMask="MvcNavigation.Specifications.SpecUtils.InMemoryRazorEngine" FunctionMask="*" />
       <Filter ModuleMask="MvcNavigation.Specifications" ClassMask="MvcNavigation.Specifications.SpecUtils.RazorTemplateBase*" FunctionMask="*" />
     </ExcludeFilters>
   </CoverageFilters>

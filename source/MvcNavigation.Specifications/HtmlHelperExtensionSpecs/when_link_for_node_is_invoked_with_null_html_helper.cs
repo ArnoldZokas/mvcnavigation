@@ -7,7 +7,7 @@ using Machine.Specifications;
 namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 {
 	[Subject(typeof(HtmlHelperExtensions))]
-	public class when_link_for_node_is_invoked_with_null_html_helper : action_link_spec
+	public class when_link_for_node_is_invoked_with_null_html_helper_and_node : action_link_spec
 	{
 		static Exception exception;
 

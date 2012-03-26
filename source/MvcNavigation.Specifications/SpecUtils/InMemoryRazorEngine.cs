@@ -41,6 +41,8 @@ namespace MvcNavigation.Specifications.SpecUtils
 
 				var codeProvider = new CSharpCodeProvider();
 				var compilerResult = codeProvider.CompileAssemblyFromDom(compilerParameters, generatorResult.GeneratedCode);
+				if (compilerResult.NativeCompilerReturnValue > 0)
+					throw new Exception(compilerResult.Errors[0].ErrorText);
 
 				var compiledTemplateType = compilerResult.CompiledAssembly.GetExportedTypes().Single();
 				var compiledTemplate = Activator.CreateInstance(compiledTemplateType);

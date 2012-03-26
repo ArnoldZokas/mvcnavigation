@@ -8,21 +8,21 @@ using Machine.Specifications;
 namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 {
 	[Subject(typeof(HtmlHelperExtensions))]
-	public class when_named_menu_is_requested_before_configuration
+	public class when_breadcrumb_is_requested_before_configuration
 	{
 		static Exception exception;
 
 		Because of = () =>
 		{
-			NavigationConfiguration.Initialise("NamedSitemap", null);
+			NavigationConfiguration.Initialise(null);
 			var htmlHelper = new HtmlHelper(new ViewContext(), new ViewPage());
-			exception = Catch.Exception(() => htmlHelper.Menu("NamedSitemap"));
+			exception = Catch.Exception(() => htmlHelper.Breadcrumb());
 		};
 
 		It should_throw_invalid_operation_exception =
 			() => exception.GetType().ShouldEqual(typeof(InvalidOperationException));
 
 		It should_throw_exception_with_descriptive_message =
-			() => exception.Message.ShouldEqual("Sitemap \"NamedSitemap\" is not initialised.");
+			() => exception.Message.ShouldEqual("MvcNavigation is not initialised.");
 	}
 }

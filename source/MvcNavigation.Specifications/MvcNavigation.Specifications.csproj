@@ -38,6 +38,14 @@
     <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\AreaAwareDynamicNodeImpl.cs" />
     <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_area_registraion.cs" />
     <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\DynamicNodeImpl.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_breadcrumb_not_matching_current_path_is_requested.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_linked_list_node_that_matches_current_path_is_requested.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_is_invoked_with_null_html_helper_and_linked_list_node.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_is_invoked_with_null_linked_list_node.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_breadcrumb_is_requested.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_breadcrumb_is_requested_before_configuration.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_named_breadcrumb_is_requested.cs" />
+    <Compile Include="HtmlHelperExtensionSpecs\when_named_breadcrumb_is_requested_before_configuration.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_named_multi_level_menu_is_requested.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_named_menu_is_requested_before_configuration.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_named_menu_is_requested.cs" />

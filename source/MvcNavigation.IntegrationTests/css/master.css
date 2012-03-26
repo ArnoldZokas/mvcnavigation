@@ -1,15 +1,15 @@
 ﻿body { font:16px/1.5 "Segoe UI", Segoe, Arial, sans-serif; }
-
-a { background:#efefef; border:#aaa solid 1px; color:#555; float:left; list-style:none; margin:0 2px; padding:4px 5px; text-transform:capitalize; }
-a:hover,
-a.selected { background:#fff; color:#000; }
-
-.menu { background:#f5f5f5; margin-bottom:10px; padding:10px; }
-.menu:after { content:""; display:table; }
-.menu:after { clear:both; }
 pre { margin-top:0; }
 ul { margin:0; padding:0; }
 li { float:left; list-style:none; }
+
+/* menu */
+.menu { background:#f5f5f5; margin-bottom:10px; padding:10px; }
+.menu:after { content:""; display:table; }
+.menu:after { clear:both; }
+.menu a { background:#efefef; border:#aaa solid 1px; color:#555; float:left; list-style:none; margin:0 2px; padding:4px 5px; text-transform:capitalize; }
+.menu a:hover,
+.menu a.selected { background:#fff; color:#000; }
 
 /* multi-level menu */
 .multi-level { height:120px; }
@@ -21,3 +21,10 @@ li { float:left; list-style:none; }
 .dropdown li ul { display:none; }
 .dropdown li:hover ul { display:block; margin:30px 0 0 0; padding:0; position:absolute; }
 .dropdown li:hover li { float:none; }
+
+/* breadcrumb */
+.breadcrumb { background:#f5f5f5; margin-bottom:10px; padding:10px; }
+.breadcrumb a {color:#555; text-decoration:none; }
+.breadcrumb a:after { content:" > "; }
+.breadcrumb a:last-child { color:#000; }
+.breadcrumb a:last-child:after { content:none; }

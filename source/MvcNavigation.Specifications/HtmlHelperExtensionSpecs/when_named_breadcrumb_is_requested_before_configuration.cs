@@ -8,7 +8,7 @@ using Machine.Specifications;
 namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 {
 	[Subject(typeof(HtmlHelperExtensions))]
-	public class when_named_menu_is_requested_before_configuration
+	public class when_named_breadcrumb_is_requested_before_configuration
 	{
 		static Exception exception;
 
@@ -16,7 +16,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 		{
 			NavigationConfiguration.Initialise("NamedSitemap", null);
 			var htmlHelper = new HtmlHelper(new ViewContext(), new ViewPage());
-			exception = Catch.Exception(() => htmlHelper.Menu("NamedSitemap"));
+			exception = Catch.Exception(() => htmlHelper.Breadcrumb("NamedSitemap"));
 		};
 
 		It should_throw_invalid_operation_exception =

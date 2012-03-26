@@ -18,7 +18,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 		Because of = () =>
 		{
 			NavigationConfiguration.Initialise(new Node<TestController>(c => c.RootAction()));
-			NavigationConfiguration.Initialise("NamedMenu", new Node<TestController>(c => c.Action1()));
+			NavigationConfiguration.Initialise("NamedSitemap", new Node<TestController>(c => c.Action1()));
 
 			RendererConfiguration.MenuRenderer = (html, model, maxLevels, renderAllLevels) =>
 			{
@@ -32,7 +32,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			};
 
 			var htmlHelper = new HtmlHelper(new ViewContext(), new ViewPage());
-			menu = htmlHelper.Menu(name: "NamedMenu");
+			menu = htmlHelper.Menu(name: "NamedSitemap");
 		};
 
 		It should_generate_menu =
