@@ -1,6 +1,7 @@
 ﻿// # Copyright © 2012, Arnold Zokas
 // # All rights reserved. 
 
+using System.Linq;
 using Machine.Specifications;
 
 namespace MvcNavigation.Specifications.NodeSpecs
@@ -15,6 +16,9 @@ namespace MvcNavigation.Specifications.NodeSpecs
 		                                                   new Node<TestController>(c => c.Action2()));
 
 		It should_contain_1_child_node =
-			() => node.Children.Count.ShouldEqual(2);
+			() => node.Children.Count().ShouldEqual(2);
+
+		It should_set_parent_reference_on_child_nodes =
+			() => node.Children.All(child => child.Parent == node).ShouldBeTrue();
 	}
 }

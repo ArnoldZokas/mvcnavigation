@@ -4,6 +4,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using MvcNavigation.Extensibility;
@@ -21,20 +22,14 @@ namespace MvcNavigation.IntegrationTests
 		{
 		}
 
-		public override ReadOnlyCollection<INode> Children
+		public override IEnumerable<INode> CreateChildNodes()
 		{
-			get
-			{
-				var childNodes = new List<INode>
+			return new List<INode>
 				{
 					new Node<ProductController, ShopAreaRegistration>(c => c.Category(1), title: "Category 1 (dynamic)"),
 					new Node<ProductController, ShopAreaRegistration>(c => c.Category(2), title: "Category 2 (dynamic)"),
 					new Node<ProductController, ShopAreaRegistration>(c => c.Category(3), title: "Category 3 (dynamic)")
 				};
-
-
-				return new ReadOnlyCollection<INode>(childNodes);
-			}
 		}
 	}
 }

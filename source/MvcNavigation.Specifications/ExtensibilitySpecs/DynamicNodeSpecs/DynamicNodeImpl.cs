@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using MvcNavigation.Extensibility;
@@ -20,17 +19,13 @@ namespace MvcNavigation.Specifications.ExtensibilitySpecs.DynamicNodeSpecs
 		{
 		}
 
-		public override ReadOnlyCollection<INode> Children
+		public override IEnumerable<INode> CreateChildNodes()
 		{
-			get
-			{
-				var childNodes = new List<INode>
-				{
-					new Node<TestController>(c => c.Action1()),
-					new Node<TestController>(c => c.Action2())
-				};
-				return new ReadOnlyCollection<INode>(childNodes);
-			}
+			return new List<INode>
+			       {
+			       	new Node<TestController>(c => c.Action1()),
+			       	new Node<TestController>(c => c.Action2())
+			       };
 		}
 	}
 }

@@ -10,25 +10,29 @@
 		<div id="content">
 			@RenderBody()
 		</div>
-		<div class="navigation">
-			<pre><code>Default navigation: @@Html.Menu()</code></pre>
+		<div class="menu">
+			<pre><code>Default menu: @@Html.Menu()</code></pre>
 			@Html.Menu()
 		</div>
-		<div class="navigation">
-			<pre><code>Default navigation (rendered via partial view): @@Html.Menu()</code></pre>
+		<div class="menu">
+			<pre><code>Default menu (rendered via partial view): @@Html.Menu()</code></pre>
 			@{ Html.RenderPartial("HeaderContainer"); }
 		</div>
-		<div class="navigation">
-			<pre><code>Default navigation (rendered via child action): @@Html.Menu()</code></pre>
+		<div class="menu">
+			<pre><code>Default menu (rendered via child action): @@Html.Menu()</code></pre>
 			@{ Html.RenderAction("Navigation", "Home", new { area = "" }); }
 		</div>
-		<div class="navigation multi-level">
-			<pre><code>Two-level horizontal navigation: @@Html.Menu(maxLevels: 2)</code></pre>
+		<div class="menu multi-level">
+			<pre><code>Two-level horizontal menu: @@Html.Menu(maxLevels: 2)</code></pre>
 			@Html.Menu(maxLevels: 2)
 		</div>
-		<div class="navigation dropdown">
-			<pre><code>Two-level dropdown navigation: @@Html.Menu(maxLevels: 2, renderAllLevels: true)</code></pre>
+		<div class="menu dropdown">
+			<pre><code>Two-level dropdown menu: @@Html.Menu(maxLevels: 2, renderAllLevels: true)</code></pre>
 			@Html.Menu(maxLevels: 2, renderAllLevels: true)
+		</div>
+		<div class="menu">
+			<pre><code>Named menu: @@Html.Menu("Cms")</code></pre>
+			@Html.Menu("Cms")
 		</div>
 	</body>
 </html>

@@ -1,8 +1,7 @@
 // # Copyright © 2012, Arnold Zokas
 // # All rights reserved. 
 
-using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -22,7 +21,15 @@ namespace MvcNavigation
 		public virtual string Title { get; protected set; }
 		public virtual string ControllerName { get; protected set; }
 		public virtual string AreaName { get; protected set; }
-		public abstract ReadOnlyCollection<INode> Children { get; }
+		public virtual INode Parent { get; protected set; }
+
+		public abstract IEnumerable<INode> Children { get; }
+
+		public void SetParent(INode parent)
+		{
+			Parent = parent;
+		}
+
 		public virtual RouteValueDictionary RouteValues { get; protected set; }
 
 		#endregion
@@ -85,7 +92,7 @@ namespace MvcNavigation
 			if (ActionName != Title)
 				sb.AppendFormat(" \"{0}\"", Title);
 
-			sb.AppendFormat(", child count: {0}", Children.Count);
+			sb.AppendFormat(", child count: {0}", Children.Count());
 
 			return sb.ToString();
 		}

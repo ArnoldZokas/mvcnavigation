@@ -24,7 +24,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 
 			route_collection.MapRoute("Test", "root", new { controller = "Test", action = "RootAction" });
 
-			link = html_helper.ActionLink(NavigationConfiguration.Sitemap);
+			link = html_helper.ActionLink(NavigationConfiguration.DefaultSitemap);
 		};
 
 		It should_generate_link_with_marker_css_class =

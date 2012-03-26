@@ -1,7 +1,7 @@
 // # Copyright © 2012, Arnold Zokas
 // # All rights reserved. 
 
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Web.Routing;
 
 namespace MvcNavigation
@@ -13,6 +13,9 @@ namespace MvcNavigation
 		string ControllerName { get; }
 		string AreaName { get; }
 		RouteValueDictionary RouteValues { get; }
-		ReadOnlyCollection<INode> Children { get; }
+		INode Parent { get; }
+		IEnumerable<INode> Children { get; }
+
+		void SetParent(INode parent);
 	}
 }

@@ -11,15 +11,14 @@ using MvcNavigation.Specifications.SpecUtils;
 namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 {
 	[Subject(typeof(HtmlHelperExtensions))]
-	public class when_multi_level_menu_is_requested
+	public class when_named_menu_is_requested
 	{
 		static MvcHtmlString menu;
 
 		Because of = () =>
 		{
-			NavigationConfiguration.Initialise(new Node<TestController>(c => c.RootAction(),
-			                                                            new Node<TestController>(c => c.Action1()),
-			                                                            new Node<TestController>(c => c.Action2())));
+			NavigationConfiguration.Initialise(new Node<TestController>(c => c.RootAction()));
+			NavigationConfiguration.Initialise("NamedMenu", new Node<TestController>(c => c.Action1()));
 
 			RendererConfiguration.MenuRenderer = (html, model, maxLevels, renderAllLevels) =>
 			{
@@ -33,10 +32,10 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			};
 
 			var htmlHelper = new HtmlHelper(new ViewContext(), new ViewPage());
-			menu = htmlHelper.Menu(maxLevels: 2);
+			menu = htmlHelper.Menu(name: "NamedMenu");
 		};
 
 		It should_generate_menu =
-			() => menu.ToString().ShouldEqual("Title:RootAction, maxLevels:2, renderAllLevels:false");
+			() => menu.ToString().ShouldEqual("Title:Action1, maxLevels:1, renderAllLevels:false");
 	}
 }

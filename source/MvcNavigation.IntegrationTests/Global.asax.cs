@@ -17,6 +17,7 @@ namespace MvcNavigation.IntegrationTests
 			AreaRegistration.RegisterAllAreas();
 
 			ConfigureNavigation();
+			ConfigureCmsNavigation();
 		}
 
 		public static void RegisterRoutes(RouteCollection routes)
@@ -28,6 +29,10 @@ namespace MvcNavigation.IntegrationTests
 			routes.MapRoute("Contact", "contact", new { controller = "Home", action = "Contact" });
 			routes.MapRoute("Contact/Page 1", "contact/page-1", new { controller = "Home", action = "ContactPage1" });
 			routes.MapRoute("Contact/Page 2", "contact/page-2", new { controller = "Home", action = "ContactPage2" });
+
+			routes.MapRoute("CMS/Dashboard", "cms/dashboard", new { controller = "Cms", action = "Dashboard" });
+			routes.MapRoute("CMS/Pages", "cms/pages", new { controller = "Cms", action = "Pages" });
+			routes.MapRoute("CMS/Users", "cms/users", new { controller = "Cms", action = "Users" });
 
 			routes.MapRoute("Navigation", "navigation", new { controller = "Home", action = "Navigation" });
 		}
@@ -48,6 +53,18 @@ namespace MvcNavigation.IntegrationTests
 				);
 
 			NavigationConfiguration.Initialise(rootNode);
+		}
+
+		static void ConfigureCmsNavigation()
+		{
+			var rootNode = new Node<HomeController>(
+				c => c.Index(),
+				new Node<CmsController>(c => c.Dashboard()),
+				new Node<CmsController>(c => c.Pages()),
+				new Node<CmsController>(c => c.Users())
+				);
+
+			NavigationConfiguration.Initialise("Cms", rootNode);
 		}
 	}
 

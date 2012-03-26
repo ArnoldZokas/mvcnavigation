@@ -2,7 +2,7 @@
 // # All rights reserved. 
 
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 using MvcNavigation.Extensibility;
@@ -19,9 +19,9 @@ namespace MvcNavigation.Specifications.ExtensibilitySpecs.DynamicNodeSpecs
 		{
 		}
 
-		public override ReadOnlyCollection<INode> Children
+		public override IEnumerable<INode> CreateChildNodes()
 		{
-			get { throw new NotImplementedException(); }
+			return new List<INode>();
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			                                                                 new Node<TestController>(c => c.Action3())));
 
 			view_context.RouteData.Values.Add("controller", "Test");
-			view_context.RouteData.Values.Add("action", "Action3");
+			view_context.RouteData.Values.Add("action", "RootAction");
 
 			view_data.Add("CurrentLevel", 1);
 			view_data.Add("MaxLevels", 2);

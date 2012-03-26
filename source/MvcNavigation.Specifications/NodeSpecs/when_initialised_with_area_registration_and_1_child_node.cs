@@ -1,6 +1,7 @@
 ﻿// # Copyright © 2012, Arnold Zokas
 // # All rights reserved. 
 
+using System.Linq;
 using Machine.Specifications;
 
 namespace MvcNavigation.Specifications.NodeSpecs
@@ -13,6 +14,6 @@ namespace MvcNavigation.Specifications.NodeSpecs
 		Because of = () => node = new Node<TestController, TestAreaRegistration>(c => c.RootAction(), new Node<TestController>(c => c.Action1()));
 
 		It should_contain_1_child_node =
-			() => node.Children.Count.ShouldEqual(1);
+			() => node.Children.Count().ShouldEqual(1);
 	}
 }

@@ -24,11 +24,30 @@ namespace MvcNavigation
 
 		public static MvcHtmlString Menu(this HtmlHelper html, int maxLevels, bool renderAllLevels)
 		{
-			if (NavigationConfiguration.Sitemap == null)
+			if (NavigationConfiguration.DefaultSitemap == null)
 				throw new InvalidOperationException("MvcNavigation is not initialised.");
 
-			var rootNode = NavigationConfiguration.Sitemap;
+			var rootNode = NavigationConfiguration.DefaultSitemap;
 			return RendererConfiguration.MenuRenderer(html, rootNode, maxLevels, renderAllLevels);
+		}
+
+		public static MvcHtmlString Menu(this HtmlHelper html, string name)
+		{
+			return Menu(html, name, maxLevels: 1, renderAllLevels: false);
+		}
+
+		public static MvcHtmlString Menu(this HtmlHelper html, string name, int maxLevels)
+		{
+			return Menu(html, name, maxLevels, renderAllLevels: false);
+		}
+
+		public static MvcHtmlString Menu(this HtmlHelper html, string name, int maxLevels, bool renderAllLevels)
+		{
+			var namedSitemap = NavigationConfiguration.GetSitemap(name);
+			if (namedSitemap == null)
+				throw new InvalidOperationException(string.Format("Sitemap \"{0}\" is not initialised.", name));
+
+			return RendererConfiguration.MenuRenderer(html, namedSitemap, maxLevels, renderAllLevels);
 		}
 
 		public static MvcHtmlString ActionLink(this HtmlHelper html, INode linkTarget)
@@ -89,7 +108,8 @@ namespace MvcNavigation
 				return false;
 
 			// check descendants
-			return currentNode.Children.Any(childNode => HasMatchingDescendant(childNode, contextControllerName, contextActionName, additionalRouteData, currentLevel++, maxLevels));
+			var nextLevel = currentLevel + 1;
+			return currentNode.Children.Any(childNode => HasMatchingDescendant(childNode, contextControllerName, contextActionName, additionalRouteData, nextLevel, maxLevels));
 		}
 
 		static bool IsCurrentNode(INode node, string contextControllerName, string contextActionName, IEnumerable<KeyValuePair<string, object>> additionalRouteData)
@@ -122,7 +142,7 @@ namespace MvcNavigation
 
 		static bool IsRootNode(INode node)
 		{
-			return NavigationConfiguration.Sitemap == node;
+			return node.Parent == null;
 		}
 
 		#region Nested type: RouteDataKeys

@@ -1,6 +1,7 @@
 ﻿// # Copyright © 2012, Arnold Zokas
 // # All rights reserved. 
 
+using System.Linq;
 using Machine.Specifications;
 using MvcNavigation.Extensibility;
 using MvcNavigation.Specifications.SpecUtils;
@@ -21,6 +22,9 @@ namespace MvcNavigation.Specifications.ExtensibilitySpecs.DynamicNodeSpecs
 			() => node.ControllerName.ShouldEqual("Test");
 
 		It should_contain_generated_child_nodes =
-			() => node.Children.Count.ShouldEqual(2);
+			() => node.Children.Count().ShouldEqual(2);
+
+		It should_set_parent_reference_on_child_nodes =
+			() => node.Children.All(child => child.Parent == node).ShouldBeTrue();
 	}
 }

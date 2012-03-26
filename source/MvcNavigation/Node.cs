@@ -3,7 +3,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 
@@ -11,7 +10,7 @@ namespace MvcNavigation
 {
 	public class Node<TController> : NodeBase where TController : IController
 	{
-		readonly List<INode> _childNodes;
+		IList<INode> _childNodes;
 
 		public Node(Expression<Action<TController>> action) : this(action, null, new INode[0])
 		{
@@ -38,12 +37,20 @@ namespace MvcNavigation
 				throw new ArgumentException("Node must be initialised with method call expression (e.g. controller => controller.Action())", "action");
 
 			Initialise(methodCallExpression, title);
-			_childNodes = new List<INode>(childNodes);
+			InitialiseChildNodes(childNodes);
 		}
 
-		public override ReadOnlyCollection<INode> Children
+		public override IEnumerable<INode> Children
 		{
-			get { return new ReadOnlyCollection<INode>(_childNodes); }
+			get { return _childNodes; }
+		}
+
+		void InitialiseChildNodes(INode[] childNodes)
+		{
+			foreach (var childNode in childNodes)
+				childNode.SetParent(this);
+
+			_childNodes = new List<INode>(childNodes);
 		}
 	}
 

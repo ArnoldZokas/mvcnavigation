@@ -2,6 +2,7 @@
 // # All rights reserved. 
 
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 
@@ -9,6 +10,8 @@ namespace MvcNavigation.Extensibility
 {
 	public abstract class DynamicNode<TController> : NodeBase where TController : IController
 	{
+		IEnumerable<INode> _childNodes;
+
 		protected DynamicNode(Expression<Action<TController>> action) : this(action, null)
 		{
 		}
@@ -23,6 +26,24 @@ namespace MvcNavigation.Extensibility
 				throw new ArgumentException("Node must be initialised with method call expression (e.g. controller => controller.Action())", "action");
 
 			Initialise(methodCallExpression, title);
+			InitialiseChildNodes();
+		}
+
+		public override IEnumerable<INode> Children
+		{
+			get { return _childNodes; }
+		}
+
+		public abstract IEnumerable<INode> CreateChildNodes();
+
+		void InitialiseChildNodes()
+		{
+			var childNodes = CreateChildNodes();
+
+			foreach (var childNode in childNodes)
+				childNode.SetParent(this);
+
+			_childNodes = childNodes;
 		}
 	}
 
