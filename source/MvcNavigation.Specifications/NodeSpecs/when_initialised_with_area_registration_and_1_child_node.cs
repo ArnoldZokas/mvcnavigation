@@ -15,5 +15,8 @@ namespace MvcNavigation.Specifications.NodeSpecs
 
 		It should_contain_1_child_node =
 			() => node.Children.Count().ShouldEqual(1);
+
+		It should_generate_string_representation_with_area_name =
+			() => node.ToString().ShouldEqual("[Test]TestController.RootAction(), child count: 1");
 	}
 }

@@ -87,6 +87,9 @@ namespace MvcNavigation
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
+			if (AreaName != "")
+				sb.AppendFormat("[{0}]", AreaName);
+
 			sb.AppendFormat("{0}.{1}()", ActionInfo.DeclaringType.Name, ActionInfo.Name);
 
 			if (ActionName != Title)
