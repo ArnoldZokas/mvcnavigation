@@ -19,24 +19,24 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 		Because of = () =>
 		{
 			NavigationConfiguration.Initialise(
-				new Node<TestController>(c => c.RootAction(),
-				                         new Node<TestController>(c => c.Action1()),
-				                         new Node<TestController>(c => c.Action2(),
-				                                                  new Node<TestController>(c => c.ParameterisedAction(1, "1")),
-				                                                  new Node<TestController>(c => c.ParameterisedAction(2, "2")),
-				                                                  new Node<TestController>(c => c.ParameterisedAction(3, "3")))));
+			                                   new Node<TestController>(c => c.RootAction(),
+			                                                            new Node<TestController>(c => c.Action1()),
+			                                                            new Node<TestController>(c => c.Action2(),
+			                                                                                     new Node<TestController>(c => c.ParameterisedAction(1, "1")),
+			                                                                                     new Node<TestController>(c => c.ParameterisedAction(2, "2")),
+			                                                                                     new Node<TestController>(c => c.ParameterisedAction(3, "3")))));
 
 			RendererConfiguration.BreadcrumbRenderer = (html, model) =>
 			{
 				const string template = "Title:@Model.First.Value.Title, Count:@Model.Count";
 
 				var referenceAssemblies = new[]
-				                          {
-				                          	typeof(LinkedList<>).Assembly, // System
-				                          	typeof(ExpandoObject).Assembly, // System.Core
-				                          	typeof(Binder).Assembly, // Microsoft.CSharp
-				                          	typeof(INode).Assembly // MvcNavigation
-				                          };
+				{
+					typeof(LinkedList<>).Assembly, // System
+					typeof(ExpandoObject).Assembly, // System.Core
+					typeof(Binder).Assembly, // Microsoft.CSharp
+					typeof(INode).Assembly // MvcNavigation
+				};
 				var executionResult = InMemoryRazorEngine.Execute(template, model, null, referenceAssemblies);
 				return new MvcHtmlString(executionResult.RuntimeResult);
 			};

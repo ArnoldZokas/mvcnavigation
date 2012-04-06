@@ -20,17 +20,17 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 
 		Establish context = () =>
 		{
-			var httpRequestBase = new Mock<HttpRequestBase>();
+			var httpRequest = new Mock<HttpRequestBase>();
 
-			var httpResponseBase = new Mock<HttpResponseBase>();
-			httpResponseBase.Setup(hrb => hrb.ApplyAppPathModifier(It.IsAny<string>())).Returns((string s) => s);
+			var httpResponse = new Mock<HttpResponseBase>();
+			httpResponse.Setup(hr => hr.ApplyAppPathModifier(It.IsAny<string>())).Returns((string s) => s);
 
-			var httpContextBase = new Mock<HttpContextBase>();
-			httpContextBase.SetupGet(hcb => hcb.Request).Returns(httpRequestBase.Object);
-			httpContextBase.SetupGet(hcb => hcb.Response).Returns(httpResponseBase.Object);
+			var httpContext = new Mock<HttpContextBase>();
+			httpContext.SetupGet(hc => hc.Request).Returns(httpRequest.Object);
+			httpContext.SetupGet(hc => hc.Response).Returns(httpResponse.Object);
 
 			route_data = new RouteData();
-			var requestContext = new RequestContext(httpContextBase.Object, route_data);
+			var requestContext = new RequestContext(httpContext.Object, route_data);
 			view_context = new ViewContext { RequestContext = requestContext };
 
 			view_data = new ViewDataDictionary();

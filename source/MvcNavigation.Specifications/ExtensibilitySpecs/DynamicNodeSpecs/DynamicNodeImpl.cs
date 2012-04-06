@@ -22,10 +22,10 @@ namespace MvcNavigation.Specifications.ExtensibilitySpecs.DynamicNodeSpecs
 		public override IEnumerable<INode> CreateChildNodes()
 		{
 			return new List<INode>
-			       {
-			       	new Node<TestController>(c => c.Action1()),
-			       	new Node<TestController>(c => c.Action2())
-			       };
+			{
+				new Node<TestController>(c => c.Action1()),
+				new Node<TestController>(c => c.Action2())
+			};
 		}
 	}
 }

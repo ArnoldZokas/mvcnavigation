@@ -25,12 +25,12 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 				const string template = "Count:@Model.Count";
 
 				var referenceAssemblies = new[]
-				                          {
-				                          	typeof(LinkedList<>).Assembly, // System
-				                          	typeof(ExpandoObject).Assembly, // System.Core
-				                          	typeof(Binder).Assembly, // Microsoft.CSharp
-				                          	typeof(INode).Assembly // MvcNavigation
-				                          };
+				{
+					typeof(LinkedList<>).Assembly, // System
+					typeof(ExpandoObject).Assembly, // System.Core
+					typeof(Binder).Assembly, // Microsoft.CSharp
+					typeof(INode).Assembly // MvcNavigation
+				};
 				var executionResult = InMemoryRazorEngine.Execute(template, model, null, referenceAssemblies);
 				return new MvcHtmlString(executionResult.RuntimeResult);
 			};

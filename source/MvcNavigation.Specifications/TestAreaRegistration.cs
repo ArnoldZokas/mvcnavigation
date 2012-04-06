@@ -1,7 +1,6 @@
 // # Copyright © 2012, Arnold Zokas
 // # All rights reserved. 
 
-using System;
 using System.Web.Mvc;
 
 namespace MvcNavigation.Specifications
@@ -15,7 +14,6 @@ namespace MvcNavigation.Specifications
 
 		public override void RegisterArea(AreaRegistrationContext context)
 		{
-			throw new NotImplementedException();
 		}
 	}
 }

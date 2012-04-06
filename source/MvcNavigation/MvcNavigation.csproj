@@ -43,6 +43,9 @@
     <Compile Include="Node.cs" />
     <Compile Include="Internal\ViewDataContainer.cs" />
     <Compile Include="Configuration\Advanced\RendererConfiguration.cs" />
+    <Compile Include="Internal\RouteDataKeys.cs" />
+    <Compile Include="UrlHelperExtensions.cs" />
+    <Compile Include="Sitemap\XmlSitemapResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -52,7 +55,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

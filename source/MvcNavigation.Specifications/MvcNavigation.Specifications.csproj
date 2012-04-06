@@ -54,6 +54,9 @@
     <Compile Include="NodeSpecs\when_initialised_with_area_registration_and_1_child_node.cs" />
     <Compile Include="NodeSpecs\when_initialised_with_area_registration_and_custom_title.cs" />
     <Compile Include="NodeSpecs\when_initialised_with_area_registraion.cs" />
+    <Compile Include="SitemapSpecs\when_initialised_before_configuration.cs" />
+    <Compile Include="SitemapSpecs\when_executed.cs" />
+    <Compile Include="SitemapSpecs\when_initialised.cs" />
     <Compile Include="TestAreaRegistration.cs" />
     <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_action_decorated_with_action_name_attribute.cs" />
     <Compile Include="ExtensibilitySpecs\DynamicNodeSpecs\when_initialised_with_invalid_expression.cs" />
@@ -96,6 +99,8 @@
     <Compile Include="NavigationConfigurationSpecs\when_initialised.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HtmlHelperExtensionSpecs\when_link_for_node_is_invoked_with_null_node.cs" />
+    <Compile Include="UrlHelperExtensionSpecs\when_route_absolute_url_invoked_with_null_url_helper.cs" />
+    <Compile Include="UrlHelperExtensionSpecs\when_route_absolute_url_invoked_with_null_node.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

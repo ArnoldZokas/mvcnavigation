@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using MvcNavigation.Configuration.Advanced;
+using MvcNavigation.Internal;
 
 namespace MvcNavigation
 {
@@ -219,15 +220,5 @@ namespace MvcNavigation
 
 			return null;
 		}
-
-		#region Nested type: RouteDataKeys
-
-		internal static class RouteDataKeys
-		{
-			public const string Action = "action";
-			public const string Controller = "controller";
-		}
-
-		#endregion
 	}
 }
