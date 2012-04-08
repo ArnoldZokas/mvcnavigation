@@ -34,7 +34,7 @@ namespace MvcNavigation.Extensibility
 			get { return _childNodes; }
 		}
 
-		public abstract IEnumerable<INode> CreateChildNodes();
+		public abstract IList<INode> CreateChildNodes();
 
 		void InitialiseChildNodes()
 		{

@@ -19,7 +19,7 @@ namespace MvcNavigation.Specifications.ExtensibilitySpecs.DynamicNodeSpecs
 		{
 		}
 
-		public override IEnumerable<INode> CreateChildNodes()
+		public override IList<INode> CreateChildNodes()
 		{
 			return new List<INode>
 			{

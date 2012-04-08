@@ -22,7 +22,7 @@ namespace MvcNavigation.IntegrationTests
 		{
 		}
 
-		public override IEnumerable<INode> CreateChildNodes()
+		public override IList<INode> CreateChildNodes()
 		{
 			return new List<INode>
 				{

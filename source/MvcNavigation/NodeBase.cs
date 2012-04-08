@@ -90,7 +90,9 @@ namespace MvcNavigation
 			if (AreaName != "")
 				sb.AppendFormat("[{0}]", AreaName);
 
+			// ReSharper disable PossibleNullReferenceException
 			sb.AppendFormat("{0}.{1}()", ActionInfo.DeclaringType.Name, ActionInfo.Name);
+			// ReSharper restore PossibleNullReferenceException
 
 			if (ActionName != Title)
 				sb.AppendFormat(" \"{0}\"", Title);
