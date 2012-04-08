@@ -5,7 +5,7 @@ using System;
 using Machine.Specifications;
 using MvcNavigation.Sitemap;
 
-namespace MvcNavigation.Specifications.SitemapSpecs
+namespace MvcNavigation.Specifications.SitemapSpecs.XmlSitemapResultSpecs
 {
 	[Subject(typeof(XmlSitemapResult))]
 	public class when_initialised_before_configuration

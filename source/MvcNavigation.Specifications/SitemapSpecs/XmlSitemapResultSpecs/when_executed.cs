@@ -12,7 +12,7 @@ using MvcNavigation.Sitemap;
 using MvcNavigation.Specifications.ExtensibilitySpecs.DynamicNodeSpecs;
 using It = Machine.Specifications.It;
 
-namespace MvcNavigation.Specifications.SitemapSpecs
+namespace MvcNavigation.Specifications.SitemapSpecs.XmlSitemapResultSpecs
 {
 	[Subject(typeof(XmlSitemapResult))]
 	public class when_executed
