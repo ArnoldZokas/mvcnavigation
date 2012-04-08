@@ -7,6 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNavigation.Specification
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNavigation.IntegrationTests", "MvcNavigation.IntegrationTests\MvcNavigation.IntegrationTests.csproj", "{C60A7166-2124-4175-A105-F67EB58C1823}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{7906CBA3-56BB-4F70-B182-72179A3253F7}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\build-release.bat = ..\build\build-release.bat
+		..\build\build.ps1 = ..\build\build.ps1
+		MvcNavigation.nuspec = MvcNavigation.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ScottDunn.vsmdi

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>MvcNavigation</id>
+		<version>0.0.0</version> <!-- Managed by psake build -->
+		<authors>Arnold Zokas</authors>
+		<owners>Arnold Zokas</owners>
+		<licenseUrl>https://github.com/ArnoldZokas/MvcNavigation/blob/master/license.txt</licenseUrl>
+		<projectUrl>https://github.com/ArnoldZokas/MvcNavigation</projectUrl>
+		<!--<iconUrl>https://github.com/ArnoldZokas/MvcNavigation/blob/master/source/Icon.png</iconUrl>-->
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>MvcNavigation is an ASP.NET MVC library for creating menus, breadcrumbs and xml sitemaps.</description>
+		<releaseNotes>Alpha build</releaseNotes>
+		<copyright>Copyright © 2012, Arnold Zokas</copyright>
+		<tags>mvc navigation menu breadcrumb sitemap</tags>
+	</metadata>
+</package>
