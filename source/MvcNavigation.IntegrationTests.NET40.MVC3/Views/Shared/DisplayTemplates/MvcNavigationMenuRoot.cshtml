@@ -1,0 +1,9 @@
+﻿@model INode
+
+<ul>
+	<li>@Html.ActionLink(@Model)</li>
+	@foreach (var childNode in Model.Children)
+	{
+		@Html.DisplayFor(node => childNode, "MvcNavigationMenuNode", new { ViewBag.CurrentLevel, ViewBag.MaxLevels, ViewBag.RenderAllLevels })
+	}
+</ul>

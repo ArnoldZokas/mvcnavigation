@@ -1,0 +1,13 @@
+﻿@model LinkedList<INode>
+
+@if (@Model.Any())
+{
+	var currentNode = @Model.First;
+	@Html.ActionLink(currentNode)
+
+	while (currentNode.Next != null)
+	{
+		@Html.ActionLink(currentNode.Next);
+		currentNode = currentNode.Next;
+	}
+}

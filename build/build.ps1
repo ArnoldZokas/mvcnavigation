@@ -18,7 +18,7 @@ properties {
 	# CreateNuGetPackage
 	$buildOutputDirectoryPath = "$baseDirectoryPath/build_output"
 	$packageRootDirectoryPath = "$buildOutputDirectoryPath/packageRoot"
-	$contentDirectoryPath = "$packageRootDirectoryPath/content"
+	$packageDisplayTemplateDirectoryPath = "$packageRootDirectoryPath/content/Views/Shared/DisplayTemplates"
 	$frameworkDirectoryPath = "$packageRootDirectoryPath/lib/net40"
 	$nuGetExePath = "$packageDirectoryPath/NuGet.CommandLine.1.7.0/tools/nuget"
 }
@@ -31,12 +31,15 @@ task CreateNuGetPackage -depends Test {
 	write-host `n-------- Preparing temp directories`n -foregroundColor yellow
 	# create convention based working directory
 	new-item $packageRootDirectoryPath -type directory
-	new-item $contentDirectoryPath -type directory
+	new-item $packageDisplayTemplateDirectoryPath -type directory
 	new-item $frameworkDirectoryPath -type directory
 
 	write-host `n-------- Preparing files`n -foregroundColor yellow
 	# copy package specification
 	copy-item $sourceDirectoryPath/$projectName.nuspec $packageRootDirectoryPath
+
+	# copy display templates
+	copy-item $sourceDirectoryPath/MvcNavigation.DisplayTemplates/Views/Shared/DisplayTemplates/* $packageDisplayTemplateDirectoryPath
 
 	# copy build output
 	copy-item $sourceDirectoryPath/$projectName/bin/$buildConfiguration/$projectName.dll $frameworkDirectoryPath
