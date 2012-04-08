@@ -9,10 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{7906CBA3
 	ProjectSection(SolutionItems) = preProject
 		..\build\build-release.bat = ..\build\build-release.bat
 		..\build\build.ps1 = ..\build\build.ps1
+		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
 		MvcNavigation.nuspec = MvcNavigation.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNavigation.DisplayTemplates", "MvcNavigation.DisplayTemplates\MvcNavigation.DisplayTemplates.csproj", "{C60A7166-2124-4175-A105-F67EB58C1823}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MvcNavigation.IntegrationTests", "MvcNavigation.IntegrationTests", "{C97A324F-89FD-4583-B585-5D8439EAF7D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcNavigation.IntegrationTests.NET40.MVC3", "MvcNavigation.IntegrationTests.NET40.MVC3\MvcNavigation.IntegrationTests.NET40.MVC3.csproj", "{9997B8A0-EEF8-48FB-AD42-3DB64FCB101F}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -35,8 +40,15 @@ Global
 		{C60A7166-2124-4175-A105-F67EB58C1823}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C60A7166-2124-4175-A105-F67EB58C1823}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C60A7166-2124-4175-A105-F67EB58C1823}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9997B8A0-EEF8-48FB-AD42-3DB64FCB101F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9997B8A0-EEF8-48FB-AD42-3DB64FCB101F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9997B8A0-EEF8-48FB-AD42-3DB64FCB101F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9997B8A0-EEF8-48FB-AD42-3DB64FCB101F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9997B8A0-EEF8-48FB-AD42-3DB64FCB101F} = {C97A324F-89FD-4583-B585-5D8439EAF7D9}
 	EndGlobalSection
 EndGlobal
