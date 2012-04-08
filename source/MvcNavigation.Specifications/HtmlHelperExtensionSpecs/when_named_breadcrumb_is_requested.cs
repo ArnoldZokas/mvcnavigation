@@ -18,11 +18,9 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 
 		Because of = () =>
 		{
-			NavigationConfiguration.Initialise(
-			                                   new Node<TestController>(c => c.RootAction(),
+			NavigationConfiguration.Initialise(new Node<TestController>(c => c.RootAction(),
 			                                                            new Node<TestController>(c => c.ParameterisedAction(2, "2"))));
-			NavigationConfiguration.Initialise(
-			                                   "NamedSitemap",
+			NavigationConfiguration.Initialise("NamedSitemap",
 			                                   new Node<TestController>(c => c.RootAction(),
 			                                                            new Node<TestController>(c => c.Action1()),
 			                                                            new Node<TestController>(c => c.Action2(),
@@ -53,6 +51,12 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 
 			var htmlHelper = new HtmlHelper(viewContext, new ViewPage());
 			menu = htmlHelper.Breadcrumb("NamedSitemap");
+		};
+
+		Cleanup after = () =>
+		{
+			NavigationConfiguration.Initialise(null);
+			NavigationConfiguration.Initialise("NamedSitemap", null);
 		};
 
 		It should_generate_menu =

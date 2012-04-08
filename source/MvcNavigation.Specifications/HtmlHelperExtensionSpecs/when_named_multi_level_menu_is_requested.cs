@@ -35,6 +35,12 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			menu = htmlHelper.Menu("NamedSitemap", maxLevels: 2);
 		};
 
+		Cleanup after = () =>
+		{
+			NavigationConfiguration.Initialise(null);
+			NavigationConfiguration.Initialise("NamedSitemap", null);
+		};
+
 		It should_generate_menu =
 			() => menu.ToString().ShouldEqual("Title:Action1, maxLevels:2, renderAllLevels:false");
 	}

@@ -18,8 +18,7 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 
 		Because of = () =>
 		{
-			NavigationConfiguration.Initialise(
-			                                   new Node<TestController>(c => c.RootAction(),
+			NavigationConfiguration.Initialise(new Node<TestController>(c => c.RootAction(),
 			                                                            new Node<TestController>(c => c.Action1()),
 			                                                            new Node<TestController>(c => c.Action2(),
 			                                                                                     new Node<TestController>(c => c.ParameterisedAction(1, "1")),
@@ -50,6 +49,8 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			var htmlHelper = new HtmlHelper(viewContext, new ViewPage());
 			menu = htmlHelper.Breadcrumb();
 		};
+
+		Cleanup after = () => NavigationConfiguration.Initialise(null);
 
 		It should_generate_menu =
 			() => menu.ToString().ShouldEqual("Title:RootAction, Count:3");

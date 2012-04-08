@@ -43,6 +43,8 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			menu = htmlHelper.Breadcrumb();
 		};
 
+		Cleanup after = () => NavigationConfiguration.Initialise(null);
+
 		It should_generate_menu =
 			() => menu.ToString().ShouldEqual("Count:0");
 	}

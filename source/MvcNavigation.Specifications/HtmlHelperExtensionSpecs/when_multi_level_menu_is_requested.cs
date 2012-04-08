@@ -36,6 +36,8 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			menu = htmlHelper.Menu(maxLevels: 2);
 		};
 
+		Cleanup after = () => NavigationConfiguration.Initialise(null);
+
 		It should_generate_menu =
 			() => menu.ToString().ShouldEqual("Title:RootAction, maxLevels:2, renderAllLevels:false");
 	}

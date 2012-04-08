@@ -10,6 +10,8 @@ namespace MvcNavigation.Specifications.NavigationConfigurationSpecs
 	{
 		Because of = () => NavigationConfiguration.Initialise("Name", new Node<TestController>(c => c.RootAction()));
 
+		Cleanup after = () => NavigationConfiguration.Initialise("Name", null);
+
 		It should_contain_named_sitemap =
 			() => NavigationConfiguration.GetSitemap("Name").ShouldNotBeNull();
 	}

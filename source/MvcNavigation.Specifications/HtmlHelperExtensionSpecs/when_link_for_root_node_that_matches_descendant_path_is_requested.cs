@@ -27,6 +27,8 @@ namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs
 			link = html_helper.ActionLink(NavigationConfiguration.DefaultSitemap);
 		};
 
+		Cleanup after = () => NavigationConfiguration.Initialise(null);
+
 		It should_generate_link_with_marker_css_class =
 			() => link.ToString().ShouldEqual("<a href=\"/root\">RootAction</a>");
 	}
