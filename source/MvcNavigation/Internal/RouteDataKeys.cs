@@ -5,7 +5,7 @@ namespace MvcNavigation.Internal
 {
 	internal static class RouteDataKeys
 	{
-		public const string Action = "action";
-		public const string Controller = "controller";
+		internal const string Action = "action";
+		internal const string Controller = "controller";
 	}
 }
