@@ -35,6 +35,8 @@ namespace MvcNavigation.IntegrationTests
 			routes.MapRoute("CMS/Users", "cms/users", new { controller = "Cms", action = "Users" });
 
 			routes.MapRoute("Navigation", "navigation", new { controller = "Home", action = "Navigation" });
+
+			routes.MapRoute("Xml Sitemap", "sitemap.xml", new { controller = "XmlSitemap", action = "Sitemap" });
 		}
 
 		static void ConfigureNavigation()

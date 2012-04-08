@@ -10,7 +10,7 @@
 		<!--<iconUrl>https://github.com/ArnoldZokas/MvcNavigation/blob/master/source/Icon.png</iconUrl>-->
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>MvcNavigation is an ASP.NET MVC library for creating menus, breadcrumbs and xml sitemaps.</description>
-		<releaseNotes>Alpha build</releaseNotes>
+		<releaseNotes>Added default implementation of XmlSitemapController</releaseNotes>
 		<copyright>Copyright © 2012, Arnold Zokas</copyright>
 		<tags>mvc navigation menu breadcrumb sitemap</tags>
 	</metadata>
