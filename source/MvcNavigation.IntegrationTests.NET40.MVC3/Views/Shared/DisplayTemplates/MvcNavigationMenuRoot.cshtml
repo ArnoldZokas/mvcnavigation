@@ -1,6 +1,6 @@
 ﻿@model INode
 
-<ul>
+<ul id="menu">
 	<li>@Html.ActionLink(@Model)</li>
 	@foreach (var childNode in Model.Children)
 	{

@@ -10,7 +10,14 @@
 		<!--<iconUrl>https://github.com/ArnoldZokas/MvcNavigation/blob/master/source/Icon.png</iconUrl>-->
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<description>MvcNavigation is an ASP.NET MVC library for creating menus, breadcrumbs and xml sitemaps.</description>
-		<releaseNotes>Added C#/Razor display templates</releaseNotes>
+		<releaseNotes>
+			1.0.0-alpha6
+			- Updated web.config transformations to fix "missing base type" bug
+			1.0.0-alpha5
+			- Added web.config transformations to NuGet package
+			1.0.0-alpha4
+			- Added C#/Razor display templates to NuGet package
+		</releaseNotes>
 		<copyright>Copyright © 2012, Arnold Zokas</copyright>
 		<tags>mvc navigation menu breadcrumb sitemap</tags>
 	</metadata>

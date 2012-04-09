@@ -18,7 +18,8 @@ properties {
 	# CreateNuGetPackage
 	$buildOutputDirectoryPath = "$baseDirectoryPath/build_output"
 	$packageRootDirectoryPath = "$buildOutputDirectoryPath/packageRoot"
-	$packageDisplayTemplateDirectoryPath = "$packageRootDirectoryPath/content/Views/Shared/DisplayTemplates"
+	$contentDirectoryPath = "$packageRootDirectoryPath/content"
+	$packageDisplayTemplateDirectoryPath = "$contentDirectoryPath/Views/Shared/DisplayTemplates"
 	$frameworkDirectoryPath = "$packageRootDirectoryPath/lib/net40"
 	$nuGetExePath = "$packageDirectoryPath/NuGet.CommandLine.1.7.0/tools/nuget"
 }
@@ -40,6 +41,9 @@ task CreateNuGetPackage -depends Test {
 
 	# copy display templates
 	copy-item $sourceDirectoryPath/MvcNavigation.DisplayTemplates/Views/Shared/DisplayTemplates/* $packageDisplayTemplateDirectoryPath
+
+	# copy transformations
+	copy-item $sourceDirectoryPath/$projectName/Web.config.transform $contentDirectoryPath
 
 	# copy build output
 	copy-item $sourceDirectoryPath/$projectName/bin/$buildConfiguration/$projectName.dll $frameworkDirectoryPath

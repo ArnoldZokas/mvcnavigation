@@ -19,20 +19,22 @@
             </div>
 
             <div id="menucontainer">
+			
+				@Html.Menu()
 
-                <ul id="menu">
+				@*<ul id="menu">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                </ul>
+                </ul>*@
 
             </div>
         </div>
 
-        <div id="main">
-            @RenderBody()
-            <div id="footer">
-            </div>
-        </div>
+		<div id="main">
+			@RenderBody()
+			<div id="footer">
+			</div>
+		</div>
     </div>
 </body>
 </html>
