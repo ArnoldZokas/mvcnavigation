@@ -50,15 +50,14 @@ task CreateNuGetPackage -depends Test {
 
 	# set package version
 	$packageVersion = (Get-Command $frameworkDirectoryPath/$projectName.dll).FileVersionInfo.ProductVersion # from AssemblyInformationalVersionAttribute
-	
 	$xml = New-Object XML
 	$xml.Load("$packageRootDirectoryPath/$projectName.nuspec")
 	$xml.package.metadata.version = $packageVersion
 	$xml.Save("$packageRootDirectoryPath/$projectName.nuspec")
 	write-host Package version is: $packageVersion
 	
-	write-host `n-------- Creating package`n -foregroundColor yellow
 	# create NuGet package
+	write-host `n-------- Creating package`n -foregroundColor yellow
 	Exec { & $nuGetExePath pack $packageRootDirectoryPath/$projectName.nuspec -OutputDirectory $buildOutputDirectoryPath }
 }
 
