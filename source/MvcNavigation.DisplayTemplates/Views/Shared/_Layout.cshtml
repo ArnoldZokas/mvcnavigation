@@ -9,7 +9,7 @@
 	<body>
 		<div id="content">
 			@RenderBody()
-			@Html.ActionLink("View sitemap.xml", "Sitemap", "XmlSitemap")
+			@Html.ActionLink("View sitemap.xml", "Sitemap", "XmlSitemap", new { area = "" }, null)
 		</div>
 		<div class="menu">
 			<pre><code>Default menu: @@Html.Menu()</code></pre>
