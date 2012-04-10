@@ -50,6 +50,15 @@ You need to have .NET 4.0 and Powershell 2.0 installed on you machine:
 MvcNavigation does not cache anything internally and relies on OutputCache (you do use OutputCache, don't you?).<br />
 If you need fine-grained control over caching, put your menu/breadcrumb into a child action and use OutputCache.
 
+## How to contribute
+### Feature suggestions
+If you have an idea on how to make MvcNavigation better - [let me know](https://github.com/ArnoldZokas/MvcNavigation/issues).<br />
+I can't promise I will build your feature, but I promise I will consider it.
+
+### Bug fixes
+I have done my best to ensure every release is bug-free.<br />
+If you find a bug, [submit an issue](https://github.com/ArnoldZokas/MvcNavigation/issues) and I will get it fixed as soon as possible.
+
 ## Credits
 This project was inspired by Maarten Balliauw's [MvcSiteMapProvider](https://github.com/maartenba/MvcSiteMapProvider).<br />
 I started prototyping a new configuration API and ended up creating a whole new project. Because I am a developer.
@@ -86,6 +95,3 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
  - extensibility API
 	- how to extend INode
 	- how to create html helper extensions
- - contribute
-	- feature suggestions
-	- bug reports
