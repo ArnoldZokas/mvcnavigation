@@ -9,7 +9,7 @@ MvcNavigation is a library that simplifies menu navigation, breadcrumb navigatio
 
 ```csharp
 var sitemap = new Node<HomeController>(
-				c => c.Index(),	// this is your root node (probably your Home page)
+				c => c.Index(),	// this is your root node (most likely your Home page)
 					new Node<HomeController>(c => c.About()) // this is a child node
 				);
 
@@ -43,6 +43,71 @@ You need to have .NET 4.0 and Powershell 2.0 installed on you machine:
 1. Pull latest source from `git://github.com/ArnoldZokas/MvcNavigation.git`
 2. Go to **/build** folder and run `build-release.bat`
 3. Go to **/build_output** folder to get binaries and C#/Razor views
+
+## Basic usage
+### Configuration
+MvcNavigation is designed to be simple and easy to use:
+
+* **Requires minimal configuration:** just describe your sitemap
+* **Strongly-typed configuration:** no magic strings, refactor-friendly
+* **Sensible defaults:** which you can override (but only if you need to)
+* **Test-friendly:** you can test any part of your sitemap configuration
+
+#### Basic configuration
+Do this once in you application initialisation code:
+
+```csharp
+public class MvcApplication : System.Web.HttpApplication
+{
+		protected void Application_Start()
+		{
+			// initialise MvcNavigation
+			var sitemap = new Node<YourController>(
+				c => c.YourAction(),	// this is your root node (most likely your Home page)
+					new Node<YourController>(c => c.AnotherAction()) // this is a child node
+				);
+			
+			NavigationConfiguration.Initialise(sitemap);
+			
+			// do other important stuff
+		}
+	}
+```
+
+#### Link text
+When generating menus and breadcrumbs, MvcNavigation must decide on what text should be used for links.
+
+The algorithm is:
+
+* Use custom text when specified, *else*
+* Use [ActionNameAttribute](http://msdn.microsoft.com/en-us/library/system.web.mvc.actionnameattribute.aspx) name when specified, *else*
+* Default to action name
+
+To specify custom link text, configure your sitemap using a diffrent `Node<TController>` constructor:
+
+```csharp
+var sitemap = new Node<YourController>(c => c.YourAction(),	"Custom link text");
+```
+
+#### "Selected" CSS class
+When generating menus and breadcrumbs, MvcNavigation will automatically add css marker class to links that match current request path.
+
+The default CSS class is "selected".
+
+This can be overriden using:
+
+```csharp
+public class MvcApplication : System.Web.HttpApplication
+{
+		protected void Application_Start()
+		{
+			// set custom css marker class
+			NavigationConfiguration.SelectedNodeCssClass = "your-css-class";
+			
+			// do other important stuff
+		}
+	}
+```
 
 ## Advanced topics
 ### Caching and performance
@@ -87,10 +152,6 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 <hr />
 <hr />
 
- - configuration
-	- how to configure sitemap
-	- title defaults and fallback
-	- how to configure css classes (default css classes)
  - advanced usages
 	- multiple/named menus
 	- multiple/named breadcrumbs
