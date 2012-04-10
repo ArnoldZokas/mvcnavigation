@@ -53,7 +53,7 @@ MvcNavigation is designed to be simple and easy to use:
 * **Sensible defaults:** which you can override (but only if you need to)
 * **Test-friendly:** you can test any part of your sitemap configuration
 
-#### Basic configuration
+#### 1) Basic configuration
 Do this once in you application initialisation code:
 
 ```csharp
@@ -74,7 +74,7 @@ public class MvcApplication : System.Web.HttpApplication
 }
 ```
 
-#### Link text
+#### 2) Link text
 When generating menus and breadcrumbs, MvcNavigation must decide on what text should be used for links.
 
 The algorithm is:
@@ -89,7 +89,7 @@ To specify custom link text, configure your sitemap using a diffrent `Node<TCont
 var sitemap = new Node<YourController>(c => c.YourAction(),	"Custom link text");
 ```
 
-#### "Selected" CSS class
+#### 3) "Selected" CSS class
 When generating menus and breadcrumbs, MvcNavigation will automatically add css marker class to links that match current request path.
 
 The default CSS class is "selected".
@@ -192,7 +192,56 @@ Will be (depending on request path of course):
 Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for live examples.
 
 ### Sitemap.xml
-TODO / include code sample, mention default sitemap
+MvcNavigation has capability to generate sitemap.xml based on configured navigation structure.
+
+Conventions:
+
+* `priority` is auto-calculated based on node depth: root node has priority 1.0, level-1 node has priority 0.9 and so on&hellip;
+* `lastmod` is not set: search engines don't use this consistenly and its usefulness is debatable
+* `changefreq` is not set: search engines don't use this consistenly and its usefulness is debatable
+* sitemap.xml is generated using default sitemap: currently there is no API for generating sitemap.xml from a named sitemap
+
+There are two ways to generate sitemap.xml:
+#### 1) Use XmlSitemapController
+[XmlSitemapController](https://github.com/ArnoldZokas/MvcNavigation/blob/master/source/MvcNavigation/Sitemap/XmlSitemapController.cs) is a basic controller implementation with one action: "Sitemap".
+
+To use it, simply configure an additional route in your application start logic:
+
+```csharp
+protected void Application_Start()
+{
+	// add route for sitemap.xml
+	var routes = RouteTable.Routes;
+	routes.MapRoute("Xml Sitemap", "sitemap.xml", new { controller = "XmlSitemap", action = "Sitemap" });
+}
+```
+
+#### 2) Create your own controller/action and return XmlSitemapResult
+
+This is useful when you want to set your own action filters.
+
+Add a new action:
+
+```csharp
+[OutpuCache, Authorize, etc…]
+public ActionResult Sitemap()
+{
+	return new XmlSitemapResult(Url);	// you need to pass an instance of UrlHelper
+}
+```
+
+Configure additional route in your application start logic:
+
+```csharp
+protected void Application_Start()
+{
+	// add route for sitemap.xml
+	var routes = RouteTable.Routes;
+	routes.MapRoute("Sitemap", "sitemap.xml", new { controller = "YourController", action = "Sitemap" });
+}
+```
+
+Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for a live example.
 
 ## Advanced topics
 ### Multiple/named sitemaps
