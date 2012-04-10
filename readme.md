@@ -59,19 +59,19 @@ Do this once in you application initialisation code:
 ```csharp
 public class MvcApplication : System.Web.HttpApplication
 {
-		protected void Application_Start()
-		{
-			// initialise MvcNavigation
-			var sitemap = new Node<YourController>(
-				c => c.YourAction(),	// this is your root node (most likely your Home page)
-					new Node<YourController>(c => c.AnotherAction()) // this is a child node
-				);
-			
-			NavigationConfiguration.Initialise(sitemap);
-			
-			// do other important stuff
-		}
+	protected void Application_Start()
+	{
+		// initialise MvcNavigation
+		var sitemap = new Node<YourController>(
+			c => c.YourAction(),	// this is your root node (most likely your Home page)
+				new Node<YourController>(c => c.AnotherAction()) // this is a child node
+			);
+		
+		NavigationConfiguration.Initialise(sitemap);
+		
+		// do other important stuff
 	}
+}
 ```
 
 #### Link text
@@ -99,14 +99,14 @@ This can be overriden using:
 ```csharp
 public class MvcApplication : System.Web.HttpApplication
 {
-		protected void Application_Start()
-		{
-			// set custom css marker class
-			NavigationConfiguration.SelectedNodeCssClass = "your-css-class";
-			
-			// do other important stuff
-		}
+	protected void Application_Start()
+	{
+		// set custom css marker class
+		NavigationConfiguration.SelectedNodeCssClass = "your-css-class";
+		
+		// do other important stuff
 	}
+}
 ```
 
 ### Menu
@@ -128,7 +128,7 @@ protected void Application_Start()
 	// initialise routes
 	var routes = RouteTable.Routes;
 	routes.MapRoute("a", "", new { controller = "YourController", action = "YourAction" });
-	routes.MapRoute("b", "another-action", new { controller = "YourController", action = "AnotherAction"});
+	routes.MapRoute("b", "another-action", new {controller = "YourController", action = "AnotherAction"});
 }
 ```
 
@@ -170,7 +170,7 @@ protected void Application_Start()
 	// initialise routes
 	var routes = RouteTable.Routes;
 	routes.MapRoute("a", "", new { controller = "YourController", action = "YourAction" });
-	routes.MapRoute("b", "another-action", new { controller = "YourController", action = "AnotherAction"});
+	routes.MapRoute("b", "another-action", new {controller = "YourController", action = "AnotherAction"});
 }
 ```
 
