@@ -44,6 +44,14 @@ You need to have .NET 4.0 and Powershell 2.0 installed on you machine:
 2. Go to **/build** folder and run `build-release.bat`
 3. Go to **/build_output** folder to get binaries and C#/Razor views
 
+## Advanced topics
+### Caching and performance
+
+MvcNavigation does not cache anything internally and relies on OutputCache (you do use OutputCache, don't you?).<br />
+If you need fine-grained control over caching, put your menu/breadcrumb into a child action and use OutputCache.
+
+
+
 <hr />
 <hr />
 
@@ -62,8 +70,6 @@ You need to have .NET 4.0 and Powershell 2.0 installed on you machine:
  - extensibility API
 	- how to extend INode
 	- how to create html helper extensions
- - caching
-	- we do no caching - do it yourself
  - contribute
 	- feature suggestions
 	- bug reports
