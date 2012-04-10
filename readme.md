@@ -18,6 +18,8 @@ NavigationConfiguration.Initialise(sitemap);
 
 **3. Display:** Add `@Html.Menu()` to your view to display a menu.
 
+Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for example of what you can create.
+
 ## Installation
 ### Requirements
 This library has a dependency on .NET 4.0 (due to use of dynamics) and targets ASP.NET MVC 3.
