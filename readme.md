@@ -109,7 +109,39 @@ public class MvcApplication : System.Web.HttpApplication
 	}
 ```
 
+### Menu
+TODO / include code sample, mention use in child views
+### Breadcrumb
+TODO / include code sample, mention use in child views
+### Sitemap.xml
+TODO / include code sample, mention default sitemap
+
 ## Advanced topics
+### Multiple/named sitemaps
+#### Configuration
+TODO
+
+#### Named menu
+TODO
+
+#### Named breadcrumb
+TODO
+
+#### Sitemap.xml
+TODO / mention default sitemap
+
+### Multi-level menu
+TODO / include code sample
+
+### How to change HTML output
+TODO / include code sample
+
+### How to configure configuration at runtime with DynamicNode
+TODO / include code sample
+
+### How to configure MvcNavigation when using Areas
+TODO / include code sample, mention fallback
+
 ### Caching and performance
 MvcNavigation does not cache anything internally and relies on OutputCache (you do use OutputCache, don't you?).<br />
 If you need fine-grained control over caching, put your menu/breadcrumb into a child action and use OutputCache.
@@ -150,16 +182,3 @@ Redistribution and use in source and binary forms, with or without modification,
 * Neither the name of the organisation nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-
-<hr />
-<hr />
-
- - advanced usages
-	- multiple/named menus
-	- multiple/named breadcrumbs
-	- multi-level menus
-	- how to change rendering output
-	- how to use dynamic node
-	- how to use areas (area fallback)
-	- how to use in child views
