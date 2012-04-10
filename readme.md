@@ -123,6 +123,9 @@ MvcNavigation is designed to be extensible:
 
 If I have locked down a useful part of the API by mistake, please let me know I and will open it up in the next release.
 
+### Versioning
+MvcNavigation is versioned in compliance with [Semantic Versioning specification](http://semver.org/).
+
 ## How to contribute
 ### Feature suggestions
 If you have an idea on how to make MvcNavigation better - [let me know](https://github.com/ArnoldZokas/MvcNavigation/issues).<br />
