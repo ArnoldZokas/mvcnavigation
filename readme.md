@@ -229,7 +229,7 @@ MvcNavigation is designed to be extensible:
 
 * **Html rendering is handled by display templates:** you have full control over what HTML gets rendered
 * **Html rendering is facilitated by extension methods:** you can add your own too
-* **Most of the API is public or protected:** inherit, implement, override any logic you need
+* **Most of the API is public/protected and non-sealed:** inherit, implement, override any logic you need
 
 If I have locked down a useful part of the API by mistake, please let me know I and will open it up in the next release.
 
