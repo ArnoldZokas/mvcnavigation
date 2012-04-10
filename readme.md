@@ -1,5 +1,4 @@
 # MvcNavigation
-
 ## Overview
 MvcNavigation is a library that simplifies menu navigation, breadcrumb navigation and xml sitemaps in ASP.NET MVC3 apps.
 
@@ -37,7 +36,6 @@ PM> Install-Package MvcNavigation
 Alternatively, you can install this package using the [NuGet Package Manager Dialog](http://docs.nuget.org/docs/start-here/managing-nuget-packages-using-the-dialog).
 
 ### How to build locally
-
 You need to have .NET 4.0 and Powershell 2.0 installed on you machine:
 
 1. Pull latest source from `git://github.com/ArnoldZokas/MvcNavigation.git`
@@ -46,9 +44,17 @@ You need to have .NET 4.0 and Powershell 2.0 installed on you machine:
 
 ## Advanced topics
 ### Caching and performance
-
 MvcNavigation does not cache anything internally and relies on OutputCache (you do use OutputCache, don't you?).<br />
 If you need fine-grained control over caching, put your menu/breadcrumb into a child action and use OutputCache.
+
+### Extensibility
+MvcNavigation is designed to be extensible:
+
+* **Html rendering is handled by display templates:** you have full control over what HTML gets rendered
+* **Html rendering is facilitated by extension methods:** you can add your own too
+* **Most of the API is public or protected:** inherit, implement, override any logic you need
+
+If I have locked down a useful part of the API by mistake, please let me know I and will open it up in the next release.
 
 ## How to contribute
 ### Feature suggestions
@@ -76,7 +82,6 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-
 <hr />
 <hr />
 
@@ -92,6 +97,3 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 	- how to use dynamic node
 	- how to use areas (area fallback)
 	- how to use in child views
- - extensibility API
-	- how to extend INode
-	- how to create html helper extensions
