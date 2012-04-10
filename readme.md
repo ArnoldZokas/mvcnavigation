@@ -18,7 +18,7 @@ NavigationConfiguration.Initialise(sitemap);
 
 **3. Display:** Add `@Html.Menu()` to your view to display a menu.
 
-Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for example of what you can create.
+Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for examples of what you can create.
 
 ## Installation
 ### Requirements
@@ -110,9 +110,87 @@ public class MvcApplication : System.Web.HttpApplication
 ```
 
 ### Menu
-TODO / include code sample, mention use in child views
+`Menu()` is an HtmlHelper extension method that uses configured sitemap to generate HTML navigation.
+
+Given configuration:
+
+```csharp
+protected void Application_Start()
+{
+	// initialise MvcNavigation
+	var sitemap = new Node<YourController>(
+		c => c.YourAction(),
+			new Node<YourController>(c => c.AnotherAction())
+		);
+		
+	NavigationConfiguration.Initialise(sitemap);
+	
+	// initialise routes
+	var routes = RouteTable.Routes;
+	routes.MapRoute("a", "", new { controller = "YourController", action = "YourAction" });
+	routes.MapRoute("b", "another-action", new { controller = "YourController", action = "AnotherAction"});
+}
+```
+
+Result of:
+
+```html
+@Html.Menu();
+```
+
+Will be:
+
+```html
+<ul>
+	<li><a href="/">YourAction</a></li>
+	<li><a href="/another-action">AnotherAction</a></li>
+</ul>
+```
+
+`Menu()` can be used in child views (including nested child views).
+
+Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for live examples.
+
 ### Breadcrumb
-TODO / include code sample, mention use in child views
+`Breadcrumb()` is an HtmlHelper extension method that uses configured sitemap to generate HTML breadcrumb navigation.
+
+Given configuration:
+
+```csharp
+protected void Application_Start()
+{
+	// initialise MvcNavigation
+	var sitemap = new Node<YourController>(
+		c => c.YourAction(),
+			new Node<YourController>(c => c.AnotherAction())
+		);
+		
+	NavigationConfiguration.Initialise(sitemap);
+	
+	// initialise routes
+	var routes = RouteTable.Routes;
+	routes.MapRoute("a", "", new { controller = "YourController", action = "YourAction" });
+	routes.MapRoute("b", "another-action", new { controller = "YourController", action = "AnotherAction"});
+}
+```
+
+Result of:
+
+```html
+@Html.Breadcrumb();
+```
+
+Will be (depending on request path of course):
+
+```html
+<a href="/">YourAction</a>
+<a href="/another-action">AnotherAction</a>
+```
+
+`Breadcrumb()` can be used in child views (including nested child views).
+
+Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for live examples.
+
 ### Sitemap.xml
 TODO / include code sample, mention default sitemap
 
