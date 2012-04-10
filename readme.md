@@ -1,8 +1,9 @@
-Docs:
+# MvcNavigation
 
- - overview
-	- elevator pitch
- - installation
+## Overview
+MvcNavigation is a library that simplifies menu navigation, breadcrumb navigation and xml sitemaps in ASP.NET MVC3 apps.
+
+installation
 	- requirements
 		- .NET 4
 		- MVC 3
