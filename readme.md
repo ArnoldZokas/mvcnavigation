@@ -18,7 +18,7 @@ NavigationConfiguration.Initialise(sitemap);
 
 **3. Display:** Add `@Html.Menu()` to your view to display a menu.
 
-Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for examples of what you can create.
+Visit [MvcNavigation sample app](http://mvcnavigation.apphb.com) for examples of what you can create.
 
 ## Installation
 ### Requirements
@@ -149,7 +149,7 @@ Will be:
 
 `Menu()` can be used in child views (including nested child views).
 
-Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for live examples.
+Visit [MvcNavigation sample app](http://mvcnavigation.apphb.com) for live examples.
 
 ### Breadcrumb
 `Breadcrumb()` is an HtmlHelper extension method that uses configured sitemap to generate HTML breadcrumb navigation.
@@ -189,7 +189,7 @@ Will be (depending on request path of course):
 
 `Breadcrumb()` can be used in child views (including nested child views).
 
-Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for live examples.
+Visit [MvcNavigation sample app](http://mvcnavigation.apphb.com) for live examples.
 
 ### Sitemap.xml
 MvcNavigation has capability to generate sitemap.xml based on configured navigation structure.
@@ -241,7 +241,7 @@ protected void Application_Start()
 }
 ```
 
-Visit [MvcNavigation sample app](mvcnavigation.apphb.com) for a live example.
+Visit [MvcNavigation sample app](http://mvcnavigation.apphb.com) for a live example.
 
 ## Advanced topics
 ### Multiple/named sitemaps
