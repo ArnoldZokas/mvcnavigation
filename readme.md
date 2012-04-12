@@ -267,7 +267,35 @@ TODO / include code sample
 TODO / include code sample
 
 ### How to configure MvcNavigation when using Areas
-TODO / include code sample, mention fallback
+```charp
+public class YourAreaRegistration : AreaRegistration
+{
+	public override string AreaName
+	{
+		get { return "AreaName"; }
+	}
+
+	public override void RegisterArea(AreaRegistrationContext context)
+	{
+		context.MapRoute("Route1", "path1", new { controller = "YourController", action = "Action1" });
+		context.MapRoute("Route2", "path2", new { controller = "YourController", action = "Action2" });
+	}
+}
+
+public class MvcApplication : HttpApplication
+{
+	protected void Application_Start()
+	{
+		AreaRegistration.RegisterAllAreas();
+
+		var sitemap = new Node<YourController, YourAreaRegistration>(c => c.Action1(),
+							new Node<YourController, YourAreaRegistration>(c => c.Action2())
+						);
+
+		NavigationConfiguration.Initialise(sitemap);
+	}
+}
+```
 
 ### Caching and performance
 MvcNavigation does not cache anything internally and relies on OutputCache (you do use OutputCache, don't you?).<br />
