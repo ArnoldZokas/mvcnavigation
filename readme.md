@@ -244,18 +244,18 @@ protected void Application_Start()
 Visit [MvcNavigation sample app](http://mvcnavigation.apphb.com) for a live example.
 
 ## Advanced topics
-### Multiple/named sitemaps
-#### Configuration
+### Multiple/named configurations
+#### 1) Configuration
 TODO
 
-#### Named menu
+#### 2) Named menu
 TODO
 
-#### Named breadcrumb
+#### 3) Named breadcrumb
 TODO
 
-#### Sitemap.xml
-TODO / mention default sitemap
+#### 4) Sitemap.xml
+Currently, there is no API for generating sitemap.xml from a named configuration.
 
 ### Multi-level menu
 TODO / include code sample
