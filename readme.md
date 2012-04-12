@@ -264,10 +264,52 @@ TODO / include code sample
 TODO / include code sample
 
 ### How to configure configuration at runtime with DynamicNode
-TODO / include code sample
+Sometimes certain areas of navigation configuration are only know at runtime (e.g. product catories).
+In such cases, you must implement abstract class `DynamicNode<TController>` and override `CreateChildNodes` method.
+
+Here is a sample implementation:
+
+```csharp
+public class ProductCategoryNode<TController> : DynamicNode<TController> where TController : IController
+{
+	public ProductCategoryNode(Expression<Action<TController>> action) : base(action)
+	{
+	}
+
+	public ProductCategoryNode(Expression<Action<TController>> action, string title) : base(action, title)
+	{
+	}
+
+	public override IList<INode> CreateChildNodes()
+	{
+		return new List<INode>
+			{
+				new Node<ProductController>(c => c.Category(1), title: "Category 1"),
+				new Node<ProductController>(c => c.Category(2), title: "Category 2"),
+				new Node<ProductController>(c => c.Category(3), title: "Category 3")
+			};
+	}
+}
+
+public class MvcApplication : HttpApplication
+{
+	protected void Application_Start()
+	{
+		var sitemap = new Node<YourController>(c => c.Action1(),
+							new ProductCategoryNode<ProductController>(c => c.Categories())
+						);
+
+		NavigationConfiguration.Initialise(sitemap);
+		
+		// configure routes, etc
+	}
+}
+```
+
+When configuring navigation dynamically using data from an external data source (such as a database), pay close attention to performance and cache output where appropriate.
 
 ### How to configure MvcNavigation when using Areas
-```charp
+```csharp
 public class YourAreaRegistration : AreaRegistration
 {
 	public override string AreaName
