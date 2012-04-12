@@ -261,7 +261,15 @@ TODO / mention default sitemap
 TODO / include code sample
 
 ### How to change HTML output
-TODO / include code sample
+In you MVC application, go to folder [./Views/Shared/DisplayTemplates](https://github.com/ArnoldZokas/MvcNavigation/tree/master/source/MvcNavigation.DisplayTemplates/Views/Shared/DisplayTemplates).
+
+There you will find three C#/Razor templates installed as part of MvcNavigation:
+
+* **MvcNavigationMenuRoot**
+* **MvcNavigationMenuNode**
+* **MvcNavigationBreadcrumb**
+
+Go in and make your changes.
 
 ### How to configure configuration at runtime with DynamicNode
 Sometimes certain areas of navigation configuration are only know at runtime (e.g. product catories).
