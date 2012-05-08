@@ -1,7 +1,4 @@
-﻿// # Copyright © 2012, Arnold Zokas
-// # All rights reserved. 
-
-using System.Linq;
+﻿using System.Linq;
 using Machine.Specifications;
 using MvcNavigation.Extensibility;
 using MvcNavigation.Specifications.SpecUtils;

@@ -1,6 +1,3 @@
-// # Copyright © 2012, Arnold Zokas
-// # All rights reserved. 
-
 using System.Text;
 
 namespace MvcNavigation.Specifications.SpecUtils

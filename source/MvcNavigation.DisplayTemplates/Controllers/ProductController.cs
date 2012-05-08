@@ -1,7 +1,4 @@
-﻿// # Copyright © 2012, Arnold Zokas
-// # All rights reserved. 
-
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace MvcNavigation.IntegrationTests.Controllers
 {
@@ -16,7 +13,7 @@ namespace MvcNavigation.IntegrationTests.Controllers
 		public ActionResult Category(int id)
 		{
 			ViewBag.Id = id;
-			
+
 			return View();
 		}
 	}

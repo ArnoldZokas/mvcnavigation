@@ -1,7 +1,4 @@
-﻿// # Copyright © 2012, Arnold Zokas
-// # All rights reserved. 
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Machine.Specifications;
 

@@ -1,6 +1,3 @@
-// # Copyright © 2012, Arnold Zokas
-// # All rights reserved. 
-
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;

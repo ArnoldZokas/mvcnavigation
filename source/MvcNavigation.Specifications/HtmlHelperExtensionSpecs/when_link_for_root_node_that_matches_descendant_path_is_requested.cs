@@ -1,7 +1,4 @@
-﻿// # Copyright © 2012, Arnold Zokas
-// # All rights reserved. 
-
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Machine.Specifications;
 
 namespace MvcNavigation.Specifications.HtmlHelperExtensionSpecs

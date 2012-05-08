@@ -1,7 +1,4 @@
-﻿// # Copyright © 2012, Arnold Zokas
-// # All rights reserved. 
-
-using System.Dynamic;
+﻿using System.Dynamic;
 using System.Web.Mvc;
 using Machine.Specifications;
 using Microsoft.CSharp.RuntimeBinder;

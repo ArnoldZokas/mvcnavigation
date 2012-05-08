@@ -1,7 +1,4 @@
-﻿// # Copyright © 2012, Arnold Zokas
-// # All rights reserved. 
-
-using Machine.Specifications;
+﻿using Machine.Specifications;
 using MvcNavigation.Specifications.SpecUtils;
 
 namespace MvcNavigation.Specifications.NodeSpecs
