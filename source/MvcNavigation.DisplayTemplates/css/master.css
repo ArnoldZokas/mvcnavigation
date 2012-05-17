@@ -25,6 +25,5 @@ li { float:left; list-style:none; }
 /* breadcrumb */
 .breadcrumb { background:#f5f5f5; margin-bottom:10px; padding:10px; }
 .breadcrumb a {color:#555; text-decoration:none; }
-.breadcrumb a:after { content:" > "; }
 .breadcrumb a:last-child { color:#000; }
 .breadcrumb a:last-child:after { content:none; }
