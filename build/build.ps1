@@ -1,5 +1,7 @@
 Framework "4.0"
 
+$ErrorActionPreference = "stop"
+
 properties {
 	$baseDirectoryPath = "./.."
 	$sourceDirectoryPath = "$baseDirectoryPath/source"
