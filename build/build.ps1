@@ -14,7 +14,7 @@ properties {
 	$buildConfiguration = "Release"
 
 	# Test
-	$mspecExePath = "$packageDirectoryPath/Machine.Specifications.0.5.3.0/tools/mspec-clr4"
+	$mspecExePath = "$packageDirectoryPath/Machine.Specifications.0.5.6.0/tools/mspec-clr4"
 	$mspecAssemblyPath = "$sourceDirectoryPath/$projectName.Specifications/bin/$buildConfiguration/$projectName.Specifications.dll"
 
 	# CreateNuGetPackage
