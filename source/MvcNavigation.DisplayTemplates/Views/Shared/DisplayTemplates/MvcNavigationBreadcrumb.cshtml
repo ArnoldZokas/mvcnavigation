@@ -2,13 +2,16 @@
 
 @if (@Model.Any())
 {
-	var currentNode = @Model.First;
-	@Html.ActionLink(currentNode)
+	Html.Raw("<nav>");
+		<text>You are here:</text>
+		var currentNode = @Model.First;
+		@Html.ActionLink(currentNode)
 
-	while (currentNode.Next != null)
-	{
-		<text> › </text>
-		@Html.ActionLink(currentNode.Next)
-		currentNode = currentNode.Next;
-	}
+		while (currentNode.Next != null)
+		{
+			<text> › </text>
+			@Html.ActionLink(currentNode.Next)
+			currentNode = currentNode.Next;
+		}
+	Html.Raw("</nav>");
 }
