@@ -376,6 +376,8 @@ If you find a bug, [submit an issue](https://github.com/ArnoldZokas/MvcNavigatio
 This project was inspired by Maarten Balliauw's [MvcSiteMapProvider](https://github.com/maartenba/MvcSiteMapProvider).<br />
 I started prototyping a new configuration API and ended up creating a whole new project. Because I am a developer.
 
+Special thanks go to Dave Taylor ([@davetayls](https://twitter.com/davetayls)) for reviewing the front-end code.
+
 ## License (New BSD)
 Copyright (C) 2012, Arnold Zokas<br />
 All rights reserved.
