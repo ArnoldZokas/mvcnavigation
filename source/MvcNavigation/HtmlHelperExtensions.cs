@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Security.Policy;
+using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using MvcNavigation.Configuration.Advanced;
@@ -90,6 +94,7 @@ namespace MvcNavigation
 			return html.ActionLink(linkTarget.Title, linkTarget.ActionName, linkTarget.ControllerName, linkTarget.RouteValues, htmlAttributes);
 		}
 
+      
 		public static MvcHtmlString ActionLink(this HtmlHelper html, LinkedListNode<INode> linkTarget)
 		{
 			if (html == null)
@@ -101,6 +106,37 @@ namespace MvcNavigation
 			var node = linkTarget.Value;
 			return html.ActionLink(node.Title, node.ActionName, node.ControllerName, node.RouteValues, null);
 		}
+
+        public static MvcHtmlString IconLinkFor(this HtmlHelper html, INode linkTarget, string cssClass)
+        {
+            if (html == null)
+                throw new ArgumentNullException("html");
+
+            if (linkTarget == null)
+                throw new ArgumentNullException("linkTarget");
+
+            if (!string.IsNullOrEmpty(linkTarget.IconFileName))
+            {
+                var link = new StringBuilder();
+                var actionUrl = String.Format(@"/{0}/{1}", linkTarget.ControllerName, linkTarget.ActionName);
+               
+                if (!string.IsNullOrEmpty(cssClass))
+                    link.Append(
+                        String.Format(
+                            @"<a class='{0}' href='{1}' data-state='{2}' title='{3}'><i class='{4}'></i><span>{5}</span><em></em></a>",
+                            cssClass
+                            , actionUrl
+                            , linkTarget.ControllerName
+                            , linkTarget.Title
+                            , linkTarget.IconFileName
+                            , linkTarget.Title));
+
+                return new MvcHtmlString(link.ToString());
+            }
+
+            
+            return new MvcHtmlString(String.Empty);
+        }
 
 		public static bool IsCurrentNode(this HtmlHelper html, INode node)
 		{
