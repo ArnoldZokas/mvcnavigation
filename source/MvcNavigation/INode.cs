@@ -12,7 +12,8 @@ namespace MvcNavigation
 		RouteValueDictionary RouteValues { get; }
 		INode Parent { get; }
 		IEnumerable<INode> Children { get; }
-
+		string IconFileName { get; }
+		
 		void SetParent(INode parent);
 	}
 }
