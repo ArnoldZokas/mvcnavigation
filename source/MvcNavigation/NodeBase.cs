@@ -16,6 +16,7 @@ namespace MvcNavigation
 
 		public virtual string ActionName { get; protected set; }
 		public virtual string Title { get; protected set; }
+        public virtual string IconFileName { get; protected set; }
 		public virtual string ControllerName { get; protected set; }
 		public virtual string AreaName { get; protected set; }
 		public virtual INode Parent { get; protected set; }
@@ -31,12 +32,13 @@ namespace MvcNavigation
 
 		#endregion
 
-		protected void Initialise(MethodCallExpression methodCallExpression, string title)
+		protected void Initialise(MethodCallExpression methodCallExpression, string title, string iconFileName)
 		{
 			ActionInfo = methodCallExpression.Method;
 
 			ActionName = GetActionName();
 			Title = title ?? ActionName;
+            IconFileName = iconFileName;
 			ControllerName = GetControllerName();
 			AreaName = "";
 			RouteValues = GetRouteValues(methodCallExpression);
